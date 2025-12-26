@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SurveyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Answer">
+    <Key>
+      <PropertyRef Name="Id_Answers" />
+    </Key>
+    <Property Name="Id_Answers" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_TestResult" Type="bigint" Nullable="false" />
+    <Property Name="Id_Question" Type="bigint" Nullable="false" />
+    <Property Name="AnswerNr" Type="tinyint" Nullable="false" />
+    <Property Name="Time" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GroupName">
+    <Key>
+      <PropertyRef Name="GroupName" />
+    </Key>
+    <Property Name="GroupName" Type="nvarchar" MaxLength="4" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="Id_Person" />
+    </Key>
+    <Property Name="Id_Person" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="GroupName" Type="nvarchar" MaxLength="4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="Id_Question" />
+    </Key>
+    <Property Name="Id_Question" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Test" Type="bigint" Nullable="false" />
+    <Property Name="Question" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Answer1" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Answer2" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Answer3" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Answer4" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CorrectNr" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Test">
+    <Key>
+      <PropertyRef Name="Id_Test" />
+    </Key>
+    <Property Name="Id_Test" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Duration" Type="smallint" />
+    <Property Name="Author" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TestResult">
+    <Key>
+      <PropertyRef Name="Id_TestResult" />
+    </Key>
+    <Property Name="Id_TestResult" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Test" Type="bigint" Nullable="false" />
+    <Property Name="Id_Person" Type="bigint" Nullable="false" />
+    <Property Name="ExecutionDate" Type="datetime" Nullable="false" />
+    <Property Name="TimeSpent" Type="smallint" Nullable="false" />
+    <Property Name="IsPass" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Answers_Questions">
+    <End Role="Question" Type="Self.Question" Multiplicity="1" />
+    <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="Id_Question" />
+      </Principal>
+      <Dependent Role="Answer">
+        <PropertyRef Name="Id_Question" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Answers_TestResults">
+    <End Role="TestResult" Type="Self.TestResult" Multiplicity="1" />
+    <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TestResult">
+        <PropertyRef Name="Id_TestResult" />
+      </Principal>
+      <Dependent Role="Answer">
+        <PropertyRef Name="Id_TestResult" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Persons_GroupName">
+    <End Role="GroupName" Type="Self.GroupName" Multiplicity="1" />
+    <End Role="Person" Type="Self.Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupName">
+        <PropertyRef Name="GroupName" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="GroupName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Questions_Tests">
+    <End Role="Test" Type="Self.Test" Multiplicity="1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Test">
+        <PropertyRef Name="Id_Test" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="Id_Test" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestResults_Persons">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="TestResult" Type="Self.TestResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id_Person" />
+      </Principal>
+      <Dependent Role="TestResult">
+        <PropertyRef Name="Id_Person" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestResults_Tests">
+    <End Role="Test" Type="Self.Test" Multiplicity="1" />
+    <End Role="TestResult" Type="Self.TestResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Test">
+        <PropertyRef Name="Id_Test" />
+      </Principal>
+      <Dependent Role="TestResult">
+        <PropertyRef Name="Id_Test" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SurveyModelStoreContainer">
+    <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupName" EntityType="Self.GroupName" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Test" EntityType="Self.Test" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TestResult" EntityType="Self.TestResult" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Answers_Questions" Association="Self.FK_Answers_Questions">
+      <End Role="Question" EntitySet="Question" />
+      <End Role="Answer" EntitySet="Answer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Answers_TestResults" Association="Self.FK_Answers_TestResults">
+      <End Role="TestResult" EntitySet="TestResult" />
+      <End Role="Answer" EntitySet="Answer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Persons_GroupName" Association="Self.FK_Persons_GroupName">
+      <End Role="GroupName" EntitySet="GroupName" />
+      <End Role="Person" EntitySet="Person" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Questions_Tests" Association="Self.FK_Questions_Tests">
+      <End Role="Test" EntitySet="Test" />
+      <End Role="Question" EntitySet="Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestResults_Persons" Association="Self.FK_TestResults_Persons">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="TestResult" EntitySet="TestResult" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestResults_Tests" Association="Self.FK_TestResults_Tests">
+      <End Role="Test" EntitySet="Test" />
+      <End Role="TestResult" EntitySet="TestResult" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
