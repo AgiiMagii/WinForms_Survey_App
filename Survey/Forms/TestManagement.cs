@@ -18,7 +18,8 @@ namespace Survey.Forms
         Factory factory = new Factory();
         Test selectedTest = null;
         List<TestView> tests = new List<TestView>();
-        List<Question> questions = new List<Question>();
+        List<QuestionView> questions = new List<QuestionView>();
+
         private readonly Main _main;
         public TestManagement(Main main)
         {
@@ -52,6 +53,18 @@ namespace Survey.Forms
             test.IsActive = chb_IsActive.Checked;
             return test;
         }
+        private Question GenerateNewQuestion(long testId)
+        {
+            Question question = new Question();
+            question.Id_Test = testId;
+            question.Question1 = txt_Question.Text;
+            question.Answer1 = txt_Answer1.Text;
+            question.Answer2 = txt_Answer2.Text;
+            question.Answer3 = txt_Answer3.Text;
+            question.Answer4 = txt_Answer4.Text;
+            question.CorrectNr = (byte)np_CorrectAnsw.Value;
+            return question;
+        }
         private void btn_Process_Click(object sender, EventArgs e)
         {
             if (gv_Tests.SelectedRows.Count > 0)
@@ -84,54 +97,123 @@ namespace Survey.Forms
             {
                 long testId = (long)gv_Tests.SelectedRows[0].Cells["Id_Test"].Value;
                 selectedTest = factory.GetTestById(testId);
+                questions = factory.GetQuestionViewByTestId(testId);
                 if (selectedTest != null)
                 {
                     txt_Name.Text = selectedTest.Name;
                     np_Duration.Value = selectedTest.Duration.HasValue ? selectedTest.Duration.Value : 0;
                     txt_Author.Text = selectedTest.Author;
                     chb_IsActive.Checked = selectedTest.IsActive;
-                    questions = GetQuestionsByTestId(testId);
-                    helper.ReloadGrid<Question>(gv_Questions, questions, false);
-                }
-            }
-        }
-        private void btn_AddQuest_Click(object sender, EventArgs e)
-        {
-            if (gv_Tests.SelectedRows.Count > 0)
-            {
-                long testId = (long)gv_Tests.SelectedRows[0].Cells["Id_Test"].Value;
-                Question question = new Question();
-                question.Id_Test = testId;
-                question.Question1 = txt_Question.Text;
-                question.Answer1 = txt_Answer1.Text;
-                question.Answer2 = txt_Answer2.Text;
-                question.Answer3 = txt_Answer3.Text;
-                question.Answer4 = txt_Answer4.Text;
-                question.CorrectNr = (byte)np_CorrectAnsw.Value;
-                try
-                {
-                    factory.AddQuestion(question);
-                    MessageBox.Show("Question added successfully.");
-                    helper.ClearForm(this.Controls);
-                    questions = GetQuestionsByTestId(testId);
-                    helper.ReloadGrid<Question>(gv_Questions, questions, false);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error adding question: " + ex.Message);
-
-
+                    helper.ReloadGrid<QuestionView>(gv_Questions, questions, false);
                 }
             }
         }
         private void btn_Clear_Click(object sender, EventArgs e)
         {
-            helper.ClearForm(this.Controls);
+            helper.ClearForm(gb_regForm.Controls);
             gv_Tests.ClearSelection();
         }
-        private List<Question> GetQuestionsByTestId(long testId)
+        private void pb_EditTest_Click(object sender, EventArgs e)
         {
-            return factory.GetTestEntities().FirstOrDefault(t => t.Id_Test == testId)?.Question.ToList() ?? new List<Question>();
+            if (!gb_regForm.Visible)
+            {
+                gb_regForm.Visible = true;
+                gb_regForm.Enabled = true;
+            }
+            else
+            {
+                gb_regForm.Visible = false;
+                gb_regForm.Enabled = false;
+
+            }
+        }
+        private void gv_Questions_SelectionChanged(object sender, EventArgs e)
+        {
+            if (gv_Questions.SelectedRows.Count > 0)
+            {
+                txt_Question.Text = gv_Questions.SelectedRows[0].Cells["Question1"].Value.ToString();
+                txt_Answer1.Text = gv_Questions.SelectedRows[0].Cells["Answer1"].Value.ToString();
+                txt_Answer2.Text = gv_Questions.SelectedRows[0].Cells["Answer2"].Value.ToString();
+                txt_Answer3.Text = gv_Questions.SelectedRows[0].Cells["Answer3"].Value.ToString();
+                txt_Answer4.Text = gv_Questions.SelectedRows[0].Cells["Answer4"].Value.ToString();
+                np_CorrectAnsw.Value = Convert.ToDecimal(gv_Questions.SelectedRows[0].Cells["CorrectAnswer"].Value);
+            }
+        }
+        private void btn_ProcessQuest_Click(object sender, EventArgs e)
+        {
+            long testId = (long)gv_Tests.SelectedRows[0].Cells["Id_Test"].Value;
+            if (gv_Questions.SelectedRows.Count > 0)
+            {
+                
+                long questionId = (long)gv_Questions.SelectedRows[0].Cells["Id_Question"].Value;
+                Question questionToUpdate = factory.GetQuestionEntities().FirstOrDefault(q => q.Id_Question == questionId);
+                if (questionToUpdate != null)
+                {
+                    try
+                    {
+                        questionToUpdate.Id_Test = testId;
+                        questionToUpdate.Question1 = txt_Question.Text;
+                        questionToUpdate.Answer1 = txt_Answer1.Text;
+                        questionToUpdate.Answer2 = txt_Answer2.Text;
+                        questionToUpdate.Answer3 = txt_Answer3.Text;
+                        questionToUpdate.Answer4 = txt_Answer4.Text;
+                        questionToUpdate.CorrectNr = (byte)np_CorrectAnsw.Value;
+                        factory.UpdateQuestion(questionToUpdate);
+                        MessageBox.Show("Question updated successfully.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error updating question: " + ex.Message);
+                    }
+                }
+            }
+            else
+            {
+                Question newQuestion = GenerateNewQuestion((long)gv_Tests.SelectedRows[0].Cells["Id_Test"].Value);
+                try
+                {
+                    factory.AddQuestion(newQuestion);
+                    MessageBox.Show("Question added successfully.");
+                    helper.ClearForm(this.Controls);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error adding question: " + ex.Message);
+                }
+            }
+            questions = factory.GetQuestionViewByTestId(testId);
+            helper.ReloadGrid<QuestionView>(gv_Questions, questions, false);
+        }
+        private void btn_ClearQ_Click(object sender, EventArgs e)
+        {
+            helper.ClearForm(gb_newQuestion.Controls);
+            gv_Questions.ClearSelection();
+        }
+        private void gv_Tests_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == gv_Tests.Columns["btnDelete"].Index)
+            {
+                long testId = (long)gv_Tests.Rows[e.RowIndex].Cells["Id_Test"].Value;
+                Test testToDelete = factory.GetTestById(testId);
+                if (testToDelete != null)
+                {
+                    DialogResult confirmResult = MessageBox.Show("Are you sure to delete this test?", "Confirm Delete", MessageBoxButtons.YesNo);
+                    if (confirmResult == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            factory.DeleteTest(testToDelete);
+                            tests = factory.GetTests();
+                            helper.ReloadGrid<TestView>(gv_Tests, tests, true);
+                            MessageBox.Show("Test deleted successfully.");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error deleting test: " + ex.Message);
+                        }
+                    }
+                }
+            }
         }
     }
 }

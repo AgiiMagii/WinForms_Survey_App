@@ -61,6 +61,36 @@ namespace Survey.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Custom_Icon_Design_Mono_General_2_Edit {
+            get {
+                object obj = ResourceManager.GetObject("Custom-Icon-Design-Mono-General-2-Edit", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Custom_Icon_Design_Mono_General_2_Edit_64 {
+            get {
+                object obj = ResourceManager.GetObject("Custom-Icon-Design-Mono-General-2-Edit.64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap man_3653346_1280 {
+            get {
+                object obj = ResourceManager.GetObject("man-3653346_1280", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Umut_Pulat_Tulliana_2_Korganizer_128 {

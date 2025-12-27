@@ -17,7 +17,7 @@ namespace Survey.Lib
             }
             grid.DataSource = null;
             grid.DataSource = items;
-            grid.AutoResizeColumns();
+            grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             if (IsDelete)
             {

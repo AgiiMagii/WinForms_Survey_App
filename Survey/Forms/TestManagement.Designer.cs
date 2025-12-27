@@ -37,6 +37,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.gb_regForm = new System.Windows.Forms.GroupBox();
+            this.btn_Clear = new System.Windows.Forms.Button();
             this.btn_Process = new System.Windows.Forms.Button();
             this.gv_Tests = new System.Windows.Forms.DataGridView();
             this.gv_Questions = new System.Windows.Forms.DataGridView();
@@ -46,23 +47,23 @@
             this.txt_Answer2 = new System.Windows.Forms.TextBox();
             this.txt_Answer3 = new System.Windows.Forms.TextBox();
             this.np_CorrectAnsw = new System.Windows.Forms.NumericUpDown();
-            this.btn_AddQuest = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.gb_Answers = new System.Windows.Forms.GroupBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btn_Clear = new System.Windows.Forms.Button();
+            this.gb_newQuestion = new System.Windows.Forms.GroupBox();
+            this.btn_ClearQ = new System.Windows.Forms.Button();
+            this.btn_ProcessQuest = new System.Windows.Forms.Button();
+            this.pb_EditTest = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.np_Duration)).BeginInit();
             this.gb_regForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gv_Tests)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_Questions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.np_CorrectAnsw)).BeginInit();
-            this.gb_Answers.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.gb_newQuestion.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_EditTest)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_back
@@ -161,12 +162,24 @@
             this.gb_regForm.Controls.Add(this.label2);
             this.gb_regForm.Controls.Add(this.chb_IsActive);
             this.gb_regForm.Controls.Add(this.label1);
-            this.gb_regForm.Location = new System.Drawing.Point(12, 72);
+            this.gb_regForm.Enabled = false;
+            this.gb_regForm.Location = new System.Drawing.Point(12, 103);
             this.gb_regForm.Name = "gb_regForm";
             this.gb_regForm.Size = new System.Drawing.Size(226, 240);
             this.gb_regForm.TabIndex = 10;
             this.gb_regForm.TabStop = false;
             this.gb_regForm.Text = "Update and Register";
+            this.gb_regForm.Visible = false;
+            // 
+            // btn_Clear
+            // 
+            this.btn_Clear.Location = new System.Drawing.Point(23, 170);
+            this.btn_Clear.Name = "btn_Clear";
+            this.btn_Clear.Size = new System.Drawing.Size(75, 23);
+            this.btn_Clear.TabIndex = 12;
+            this.btn_Clear.Text = "Clear Form";
+            this.btn_Clear.UseVisualStyleBackColor = true;
+            this.btn_Clear.Click += new System.EventHandler(this.btn_Clear_Click);
             // 
             // btn_Process
             // 
@@ -186,8 +199,9 @@
             this.gv_Tests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gv_Tests.Location = new System.Drawing.Point(254, 33);
             this.gv_Tests.Name = "gv_Tests";
-            this.gv_Tests.Size = new System.Drawing.Size(718, 156);
+            this.gv_Tests.Size = new System.Drawing.Size(718, 141);
             this.gv_Tests.TabIndex = 11;
+            this.gv_Tests.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gv_Tests_CellContentClick);
             this.gv_Tests.SelectionChanged += new System.EventHandler(this.gv_Tests_SelectionChanged);
             // 
             // gv_Questions
@@ -198,50 +212,51 @@
             this.gv_Questions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gv_Questions.Location = new System.Drawing.Point(254, 199);
             this.gv_Questions.Name = "gv_Questions";
-            this.gv_Questions.Size = new System.Drawing.Size(718, 150);
+            this.gv_Questions.Size = new System.Drawing.Size(718, 135);
             this.gv_Questions.TabIndex = 12;
+            this.gv_Questions.SelectionChanged += new System.EventHandler(this.gv_Questions_SelectionChanged);
             // 
             // txt_Question
             // 
             this.txt_Question.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_Question.Location = new System.Drawing.Point(331, 355);
+            this.txt_Question.Location = new System.Drawing.Point(135, 41);
             this.txt_Question.Name = "txt_Question";
-            this.txt_Question.Size = new System.Drawing.Size(641, 20);
+            this.txt_Question.Size = new System.Drawing.Size(536, 20);
             this.txt_Question.TabIndex = 13;
             // 
             // txt_Answer1
             // 
-            this.txt_Answer1.Location = new System.Drawing.Point(31, 48);
+            this.txt_Answer1.Location = new System.Drawing.Point(135, 83);
             this.txt_Answer1.Name = "txt_Answer1";
-            this.txt_Answer1.Size = new System.Drawing.Size(215, 20);
+            this.txt_Answer1.Size = new System.Drawing.Size(307, 20);
             this.txt_Answer1.TabIndex = 14;
             // 
             // txt_Answer4
             // 
-            this.txt_Answer4.Location = new System.Drawing.Point(31, 126);
+            this.txt_Answer4.Location = new System.Drawing.Point(135, 161);
             this.txt_Answer4.Name = "txt_Answer4";
-            this.txt_Answer4.Size = new System.Drawing.Size(215, 20);
+            this.txt_Answer4.Size = new System.Drawing.Size(307, 20);
             this.txt_Answer4.TabIndex = 15;
             // 
             // txt_Answer2
             // 
-            this.txt_Answer2.Location = new System.Drawing.Point(31, 74);
+            this.txt_Answer2.Location = new System.Drawing.Point(135, 109);
             this.txt_Answer2.Name = "txt_Answer2";
-            this.txt_Answer2.Size = new System.Drawing.Size(215, 20);
+            this.txt_Answer2.Size = new System.Drawing.Size(307, 20);
             this.txt_Answer2.TabIndex = 16;
             // 
             // txt_Answer3
             // 
-            this.txt_Answer3.Location = new System.Drawing.Point(31, 100);
+            this.txt_Answer3.Location = new System.Drawing.Point(135, 135);
             this.txt_Answer3.Name = "txt_Answer3";
-            this.txt_Answer3.Size = new System.Drawing.Size(215, 20);
+            this.txt_Answer3.Size = new System.Drawing.Size(307, 20);
             this.txt_Answer3.TabIndex = 17;
             // 
             // np_CorrectAnsw
             // 
             this.np_CorrectAnsw.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.np_CorrectAnsw.Location = new System.Drawing.Point(862, 381);
+            this.np_CorrectAnsw.Location = new System.Drawing.Point(561, 86);
             this.np_CorrectAnsw.Maximum = new decimal(new int[] {
             4,
             0,
@@ -251,22 +266,11 @@
             this.np_CorrectAnsw.Size = new System.Drawing.Size(110, 20);
             this.np_CorrectAnsw.TabIndex = 18;
             // 
-            // btn_AddQuest
-            // 
-            this.btn_AddQuest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_AddQuest.Location = new System.Drawing.Point(862, 407);
-            this.btn_AddQuest.Name = "btn_AddQuest";
-            this.btn_AddQuest.Size = new System.Drawing.Size(110, 23);
-            this.btn_AddQuest.TabIndex = 19;
-            this.btn_AddQuest.Text = "Add";
-            this.btn_AddQuest.UseVisualStyleBackColor = true;
-            this.btn_AddQuest.Click += new System.EventHandler(this.btn_AddQuest_Click);
-            // 
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(251, 362);
+            this.label5.Location = new System.Drawing.Point(55, 44);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(74, 13);
             this.label5.TabIndex = 20;
@@ -275,7 +279,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(767, 383);
+            this.label6.Location = new System.Drawing.Point(466, 88);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(89, 13);
             this.label6.TabIndex = 21;
@@ -284,90 +288,100 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 51);
+            this.label7.Location = new System.Drawing.Point(78, 86);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(13, 13);
+            this.label7.Size = new System.Drawing.Size(51, 13);
             this.label7.TabIndex = 22;
-            this.label7.Text = "1";
+            this.label7.Text = "Answer 1";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 77);
+            this.label8.Location = new System.Drawing.Point(78, 112);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(13, 13);
+            this.label8.Size = new System.Drawing.Size(51, 13);
             this.label8.TabIndex = 23;
-            this.label8.Text = "2";
+            this.label8.Text = "Answer 2";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(12, 103);
+            this.label9.Location = new System.Drawing.Point(78, 138);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(13, 13);
+            this.label9.Size = new System.Drawing.Size(51, 13);
             this.label9.TabIndex = 24;
-            this.label9.Text = "3";
+            this.label9.Text = "Answer 3";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(12, 129);
+            this.label10.Location = new System.Drawing.Point(78, 164);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(13, 13);
+            this.label10.Size = new System.Drawing.Size(51, 13);
             this.label10.TabIndex = 25;
-            this.label10.Text = "4";
+            this.label10.Text = "Answer 4";
             // 
-            // gb_Answers
+            // gb_newQuestion
             // 
-            this.gb_Answers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.gb_Answers.Controls.Add(this.txt_Answer1);
-            this.gb_Answers.Controls.Add(this.label10);
-            this.gb_Answers.Controls.Add(this.txt_Answer4);
-            this.gb_Answers.Controls.Add(this.label9);
-            this.gb_Answers.Controls.Add(this.txt_Answer2);
-            this.gb_Answers.Controls.Add(this.label8);
-            this.gb_Answers.Controls.Add(this.txt_Answer3);
-            this.gb_Answers.Controls.Add(this.label7);
-            this.gb_Answers.Location = new System.Drawing.Point(284, 397);
-            this.gb_Answers.Name = "gb_Answers";
-            this.gb_Answers.Size = new System.Drawing.Size(259, 163);
-            this.gb_Answers.TabIndex = 26;
-            this.gb_Answers.TabStop = false;
-            this.gb_Answers.Text = "Answer Options";
+            this.gb_newQuestion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.gb_newQuestion.Controls.Add(this.btn_ClearQ);
+            this.gb_newQuestion.Controls.Add(this.btn_ProcessQuest);
+            this.gb_newQuestion.Controls.Add(this.txt_Answer1);
+            this.gb_newQuestion.Controls.Add(this.label10);
+            this.gb_newQuestion.Controls.Add(this.txt_Question);
+            this.gb_newQuestion.Controls.Add(this.label5);
+            this.gb_newQuestion.Controls.Add(this.txt_Answer4);
+            this.gb_newQuestion.Controls.Add(this.np_CorrectAnsw);
+            this.gb_newQuestion.Controls.Add(this.label9);
+            this.gb_newQuestion.Controls.Add(this.label6);
+            this.gb_newQuestion.Controls.Add(this.txt_Answer2);
+            this.gb_newQuestion.Controls.Add(this.label7);
+            this.gb_newQuestion.Controls.Add(this.label8);
+            this.gb_newQuestion.Controls.Add(this.txt_Answer3);
+            this.gb_newQuestion.Location = new System.Drawing.Point(254, 340);
+            this.gb_newQuestion.Name = "gb_newQuestion";
+            this.gb_newQuestion.Size = new System.Drawing.Size(718, 207);
+            this.gb_newQuestion.TabIndex = 26;
+            this.gb_newQuestion.TabStop = false;
+            this.gb_newQuestion.Text = "Add a Question";
             // 
-            // pictureBox1
+            // btn_ClearQ
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = global::Survey.Properties.Resources.Umut_Pulat_Tulliana_2_Korganizer_128;
-            this.pictureBox1.Location = new System.Drawing.Point(35, 421);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(142, 122);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 27;
-            this.pictureBox1.TabStop = false;
+            this.btn_ClearQ.Location = new System.Drawing.Point(469, 128);
+            this.btn_ClearQ.Name = "btn_ClearQ";
+            this.btn_ClearQ.Size = new System.Drawing.Size(75, 23);
+            this.btn_ClearQ.TabIndex = 28;
+            this.btn_ClearQ.Text = "Clear Form";
+            this.btn_ClearQ.UseVisualStyleBackColor = true;
+            this.btn_ClearQ.Click += new System.EventHandler(this.btn_ClearQ_Click);
             // 
-            // btn_Clear
+            // btn_ProcessQuest
             // 
-            this.btn_Clear.Location = new System.Drawing.Point(23, 170);
-            this.btn_Clear.Name = "btn_Clear";
-            this.btn_Clear.Size = new System.Drawing.Size(75, 23);
-            this.btn_Clear.TabIndex = 12;
-            this.btn_Clear.Text = "Clear Form";
-            this.btn_Clear.UseVisualStyleBackColor = true;
-            this.btn_Clear.Click += new System.EventHandler(this.btn_Clear_Click);
+            this.btn_ProcessQuest.Location = new System.Drawing.Point(469, 159);
+            this.btn_ProcessQuest.Name = "btn_ProcessQuest";
+            this.btn_ProcessQuest.Size = new System.Drawing.Size(202, 23);
+            this.btn_ProcessQuest.TabIndex = 26;
+            this.btn_ProcessQuest.Text = "Process";
+            this.btn_ProcessQuest.UseVisualStyleBackColor = true;
+            this.btn_ProcessQuest.Click += new System.EventHandler(this.btn_ProcessQuest_Click);
+            // 
+            // pb_EditTest
+            // 
+            this.pb_EditTest.Image = global::Survey.Properties.Resources.Custom_Icon_Design_Mono_General_2_Edit_64;
+            this.pb_EditTest.Location = new System.Drawing.Point(167, 33);
+            this.pb_EditTest.Name = "pb_EditTest";
+            this.pb_EditTest.Size = new System.Drawing.Size(71, 68);
+            this.pb_EditTest.TabIndex = 27;
+            this.pb_EditTest.TabStop = false;
+            this.pb_EditTest.Click += new System.EventHandler(this.pb_EditTest_Click);
             // 
             // TestManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 574);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.gb_Answers);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.btn_AddQuest);
-            this.Controls.Add(this.np_CorrectAnsw);
-            this.Controls.Add(this.txt_Question);
+            this.ClientSize = new System.Drawing.Size(984, 559);
+            this.Controls.Add(this.pb_EditTest);
+            this.Controls.Add(this.gb_newQuestion);
             this.Controls.Add(this.gv_Questions);
             this.Controls.Add(this.gv_Tests);
             this.Controls.Add(this.gb_regForm);
@@ -382,11 +396,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gv_Tests)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_Questions)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.np_CorrectAnsw)).EndInit();
-            this.gb_Answers.ResumeLayout(false);
-            this.gb_Answers.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.gb_newQuestion.ResumeLayout(false);
+            this.gb_newQuestion.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_EditTest)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -410,15 +423,16 @@
         private System.Windows.Forms.TextBox txt_Answer2;
         private System.Windows.Forms.TextBox txt_Answer3;
         private System.Windows.Forms.NumericUpDown np_CorrectAnsw;
-        private System.Windows.Forms.Button btn_AddQuest;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.GroupBox gb_Answers;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.GroupBox gb_newQuestion;
+        private System.Windows.Forms.PictureBox pb_EditTest;
         private System.Windows.Forms.Button btn_Clear;
+        private System.Windows.Forms.Button btn_ProcessQuest;
+        private System.Windows.Forms.Button btn_ClearQ;
     }
 }

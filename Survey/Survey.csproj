@@ -109,6 +109,7 @@
     <Compile Include="TestResult.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Views\QuestionView.cs" />
     <Compile Include="Views\TestView.cs" />
     <EmbeddedResource Include="Forms\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

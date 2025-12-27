@@ -18,6 +18,10 @@ namespace Survey.Lib
         {
             return repository.GetEntities<Test>();
         }
+        public List<Question> GetQuestionEntities()
+        {
+            return repository.GetEntities<Question>();
+        }
         public void AddTest(Test test)
         {
             repository.AddEntity<Test>(test);
@@ -26,10 +30,25 @@ namespace Survey.Lib
         {
             return repository.GetEntityById<Test>(id);
         }
+        public Question GetQuestionById(long id)
+        {
+            return repository.GetEntityById<Question>(id);
+        }
+        public List<QuestionView> GetQuestionViewByTestId(long testId)
+        {
+            return MapQuestionsToQuestionViews(repository.GetEntityById<Test>(testId).Question.ToList());
+        }
+        public List<Question> GetQuestionsByTestId(long testId)
+        {
+            return GetTestEntities().FirstOrDefault(t => t.Id_Test == testId)?.Question.ToList() ?? new List<Question>();
+        }
         public void UpdateTest(Test test)
         {
             repository.UpdateEntity<Test>(test);
-            
+        }
+        public void UpdateQuestion(Question question)
+        {
+            repository.UpdateEntity<Question>(question);
         }
         public void AddQuestion(Question question)
         {
@@ -52,6 +71,29 @@ namespace Survey.Lib
                 testViews.Add(testView);
             }
             return testViews;
+        }
+        private List<QuestionView> MapQuestionsToQuestionViews(List<Question> questions)
+        {
+            List<QuestionView> questionViews = new List<QuestionView>();
+            foreach (var question in questions)
+            {
+                QuestionView questionView = new QuestionView
+                {
+                    Id_Question = question.Id_Question,
+                    Question1 = question.Question1,
+                    Answer1 = question.Answer1,
+                    Answer2 = question.Answer2,
+                    Answer3 = question.Answer3,
+                    Answer4 = question.Answer4,
+                    CorrectAnswer = question.CorrectNr
+                };
+                questionViews.Add(questionView);
+            }
+            return questionViews;
+        }
+        public void DeleteTest(Test test)
+        {
+            repository.DeleteEntity<Test>(test);
         }
     }
 }

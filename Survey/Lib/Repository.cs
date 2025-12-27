@@ -58,5 +58,17 @@ namespace Survey.Lib
                 throw;
             }
         }
+        public void DeleteEntity<TEntity>(TEntity entity) where TEntity : class
+        {
+            try
+            {
+                _dbContext.Set<TEntity>().Remove(entity);
+                _dbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error deleting entity: " + ex.Message, ex);
+            }
+        }
     }
 }
