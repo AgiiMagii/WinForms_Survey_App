@@ -37,6 +37,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.gb_regForm = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.btn_Clear = new System.Windows.Forms.Button();
             this.btn_Process = new System.Windows.Forms.Button();
             this.gv_Tests = new System.Windows.Forms.DataGridView();
@@ -57,6 +59,9 @@
             this.btn_ClearQ = new System.Windows.Forms.Button();
             this.btn_ProcessQuest = new System.Windows.Forms.Button();
             this.pb_EditTest = new System.Windows.Forms.PictureBox();
+            this.lbl_Message = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.np_Duration)).BeginInit();
             this.gb_regForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gv_Tests)).BeginInit();
@@ -79,14 +84,14 @@
             // 
             // txt_Name
             // 
-            this.txt_Name.Location = new System.Drawing.Point(96, 40);
+            this.txt_Name.Location = new System.Drawing.Point(25, 223);
             this.txt_Name.Name = "txt_Name";
-            this.txt_Name.Size = new System.Drawing.Size(120, 20);
+            this.txt_Name.Size = new System.Drawing.Size(184, 20);
             this.txt_Name.TabIndex = 1;
             // 
             // np_Duration
             // 
-            this.np_Duration.Location = new System.Drawing.Point(96, 77);
+            this.np_Duration.Location = new System.Drawing.Point(25, 262);
             this.np_Duration.Maximum = new decimal(new int[] {
             200,
             0,
@@ -98,7 +103,7 @@
             0,
             0});
             this.np_Duration.Name = "np_Duration";
-            this.np_Duration.Size = new System.Drawing.Size(120, 20);
+            this.np_Duration.Size = new System.Drawing.Size(109, 20);
             this.np_Duration.TabIndex = 2;
             this.np_Duration.Value = new decimal(new int[] {
             1,
@@ -108,15 +113,15 @@
             // 
             // txt_Author
             // 
-            this.txt_Author.Location = new System.Drawing.Point(96, 115);
+            this.txt_Author.Location = new System.Drawing.Point(25, 301);
             this.txt_Author.Name = "txt_Author";
-            this.txt_Author.Size = new System.Drawing.Size(120, 20);
+            this.txt_Author.Size = new System.Drawing.Size(184, 20);
             this.txt_Author.TabIndex = 3;
             // 
             // chb_IsActive
             // 
             this.chb_IsActive.AutoSize = true;
-            this.chb_IsActive.Location = new System.Drawing.Point(160, 159);
+            this.chb_IsActive.Location = new System.Drawing.Point(153, 337);
             this.chb_IsActive.Name = "chb_IsActive";
             this.chb_IsActive.Size = new System.Drawing.Size(56, 17);
             this.chb_IsActive.TabIndex = 5;
@@ -126,16 +131,16 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(55, 47);
+            this.label1.Location = new System.Drawing.Point(25, 207);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 6;
-            this.label1.Text = "Name";
+            this.label1.Text = "Test Name";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(45, 84);
+            this.label2.Location = new System.Drawing.Point(22, 246);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 13);
             this.label2.TabIndex = 7;
@@ -144,7 +149,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(56, 122);
+            this.label3.Location = new System.Drawing.Point(25, 285);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 13);
             this.label3.TabIndex = 8;
@@ -152,7 +157,10 @@
             // 
             // gb_regForm
             // 
-            this.gb_regForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.gb_regForm.Controls.Add(this.label13);
+            this.gb_regForm.Controls.Add(this.label12);
+            this.gb_regForm.Controls.Add(this.label11);
+            this.gb_regForm.Controls.Add(this.label4);
             this.gb_regForm.Controls.Add(this.btn_Clear);
             this.gb_regForm.Controls.Add(this.btn_Process);
             this.gb_regForm.Controls.Add(this.txt_Name);
@@ -162,18 +170,34 @@
             this.gb_regForm.Controls.Add(this.label2);
             this.gb_regForm.Controls.Add(this.chb_IsActive);
             this.gb_regForm.Controls.Add(this.label1);
-            this.gb_regForm.Enabled = false;
-            this.gb_regForm.Location = new System.Drawing.Point(12, 103);
+            this.gb_regForm.Location = new System.Drawing.Point(12, 86);
             this.gb_regForm.Name = "gb_regForm";
-            this.gb_regForm.Size = new System.Drawing.Size(226, 240);
+            this.gb_regForm.Size = new System.Drawing.Size(226, 461);
             this.gb_regForm.TabIndex = 10;
             this.gb_regForm.TabStop = false;
             this.gb_regForm.Text = "Update and Register";
             this.gb_regForm.Visible = false;
             // 
+            // label11
+            // 
+            this.label11.Location = new System.Drawing.Point(25, 49);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(184, 33);
+            this.label11.TabIndex = 14;
+            this.label11.Text = "● Fill in form and process to register a new test";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(140, 264);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(43, 13);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "minutes";
+            // 
             // btn_Clear
             // 
-            this.btn_Clear.Location = new System.Drawing.Point(23, 170);
+            this.btn_Clear.Location = new System.Drawing.Point(28, 382);
             this.btn_Clear.Name = "btn_Clear";
             this.btn_Clear.Size = new System.Drawing.Size(75, 23);
             this.btn_Clear.TabIndex = 12;
@@ -183,9 +207,9 @@
             // 
             // btn_Process
             // 
-            this.btn_Process.Location = new System.Drawing.Point(23, 199);
+            this.btn_Process.Location = new System.Drawing.Point(25, 413);
             this.btn_Process.Name = "btn_Process";
-            this.btn_Process.Size = new System.Drawing.Size(193, 23);
+            this.btn_Process.Size = new System.Drawing.Size(184, 23);
             this.btn_Process.TabIndex = 11;
             this.btn_Process.Text = "Process";
             this.btn_Process.UseVisualStyleBackColor = true;
@@ -193,13 +217,12 @@
             // 
             // gv_Tests
             // 
-            this.gv_Tests.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.gv_Tests.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gv_Tests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gv_Tests.Location = new System.Drawing.Point(254, 33);
+            this.gv_Tests.Location = new System.Drawing.Point(254, 12);
             this.gv_Tests.Name = "gv_Tests";
-            this.gv_Tests.Size = new System.Drawing.Size(718, 141);
+            this.gv_Tests.Size = new System.Drawing.Size(718, 136);
             this.gv_Tests.TabIndex = 11;
             this.gv_Tests.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gv_Tests_CellContentClick);
             this.gv_Tests.SelectionChanged += new System.EventHandler(this.gv_Tests_SelectionChanged);
@@ -210,7 +233,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gv_Questions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gv_Questions.Location = new System.Drawing.Point(254, 199);
+            this.gv_Questions.Location = new System.Drawing.Point(254, 194);
             this.gv_Questions.Name = "gv_Questions";
             this.gv_Questions.Size = new System.Drawing.Size(718, 135);
             this.gv_Questions.TabIndex = 12;
@@ -368,18 +391,47 @@
             // pb_EditTest
             // 
             this.pb_EditTest.Image = global::Survey.Properties.Resources.Custom_Icon_Design_Mono_General_2_Edit_64;
-            this.pb_EditTest.Location = new System.Drawing.Point(167, 33);
+            this.pb_EditTest.Location = new System.Drawing.Point(159, 12);
             this.pb_EditTest.Name = "pb_EditTest";
-            this.pb_EditTest.Size = new System.Drawing.Size(71, 68);
+            this.pb_EditTest.Size = new System.Drawing.Size(79, 68);
             this.pb_EditTest.TabIndex = 27;
             this.pb_EditTest.TabStop = false;
             this.pb_EditTest.Click += new System.EventHandler(this.pb_EditTest_Click);
+            // 
+            // lbl_Message
+            // 
+            this.lbl_Message.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lbl_Message.AutoSize = true;
+            this.lbl_Message.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Message.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.lbl_Message.Location = new System.Drawing.Point(467, 154);
+            this.lbl_Message.Name = "lbl_Message";
+            this.lbl_Message.Size = new System.Drawing.Size(0, 25);
+            this.lbl_Message.TabIndex = 28;
+            this.lbl_Message.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label12
+            // 
+            this.label12.Location = new System.Drawing.Point(25, 82);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(184, 33);
+            this.label12.TabIndex = 15;
+            this.label12.Text = "● Select a test to make corrections and process to update";
+            // 
+            // label13
+            // 
+            this.label13.Location = new System.Drawing.Point(25, 115);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(184, 33);
+            this.label13.TabIndex = 16;
+            this.label13.Text = "● To register a new test when the\r\n existing one is selected, clear the form";
             // 
             // TestManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 559);
+            this.Controls.Add(this.lbl_Message);
             this.Controls.Add(this.pb_EditTest);
             this.Controls.Add(this.gb_newQuestion);
             this.Controls.Add(this.gv_Questions);
@@ -400,6 +452,7 @@
             this.gb_newQuestion.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_EditTest)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -434,5 +487,10 @@
         private System.Windows.Forms.Button btn_Clear;
         private System.Windows.Forms.Button btn_ProcessQuest;
         private System.Windows.Forms.Button btn_ClearQ;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lbl_Message;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
     }
 }

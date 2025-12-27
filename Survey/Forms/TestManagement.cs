@@ -80,16 +80,19 @@ namespace Survey.Forms
                     testToUpdate.IsActive = chb_IsActive.Checked;
 
                     factory.UpdateTest(testToUpdate);
+                    helper.ShowMessage("Test updated successfully.", lbl_Message, true);
                 }
             }
             else
             {
                 Test newTest = GenerateNewTest();
                 factory.AddTest(newTest);
+                helper.ShowMessage("Test added successfully.", lbl_Message, true);
             }
             tests = factory.GetTests();
             helper.ReloadGrid<TestView>(gv_Tests, tests, true);
             helper.ClearForm(this.Controls);
+            gb_regForm.Visible = false;
         }
         private void gv_Tests_SelectionChanged(object sender, EventArgs e)
         {
@@ -118,13 +121,10 @@ namespace Survey.Forms
             if (!gb_regForm.Visible)
             {
                 gb_regForm.Visible = true;
-                gb_regForm.Enabled = true;
             }
             else
             {
                 gb_regForm.Visible = false;
-                gb_regForm.Enabled = false;
-
             }
         }
         private void gv_Questions_SelectionChanged(object sender, EventArgs e)
@@ -141,40 +141,43 @@ namespace Survey.Forms
         }
         private void btn_ProcessQuest_Click(object sender, EventArgs e)
         {
-            long testId = (long)gv_Tests.SelectedRows[0].Cells["Id_Test"].Value;
-            if (gv_Questions.SelectedRows.Count > 0)
+            if (gv_Tests.SelectedRows.Count == 0)
             {
-                
-                long questionId = (long)gv_Questions.SelectedRows[0].Cells["Id_Question"].Value;
-                Question questionToUpdate = factory.GetQuestionEntities().FirstOrDefault(q => q.Id_Question == questionId);
-                if (questionToUpdate != null)
+                helper.ShowMessage("Please select a test first.", lbl_Message, false);
+                return;
+            }
+
+            long testId = (long)gv_Tests.SelectedRows[0].Cells["Id_Test"].Value;
+            long? questionId = gv_Questions.SelectedRows.Count > 0
+                ? (long?)gv_Questions.SelectedRows[0].Cells["Id_Question"].Value
+                : null;
+            if (questionId != null)
+            {
+                try
                 {
-                    try
-                    {
-                        questionToUpdate.Id_Test = testId;
-                        questionToUpdate.Question1 = txt_Question.Text;
-                        questionToUpdate.Answer1 = txt_Answer1.Text;
-                        questionToUpdate.Answer2 = txt_Answer2.Text;
-                        questionToUpdate.Answer3 = txt_Answer3.Text;
-                        questionToUpdate.Answer4 = txt_Answer4.Text;
-                        questionToUpdate.CorrectNr = (byte)np_CorrectAnsw.Value;
-                        factory.UpdateQuestion(questionToUpdate);
-                        MessageBox.Show("Question updated successfully.");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error updating question: " + ex.Message);
-                    }
+                    Question questionToUpdate = factory.GetQuestionEntities().FirstOrDefault(q => q.Id_Question == questionId);
+                    questionToUpdate.Id_Test = testId;
+                    questionToUpdate.Question1 = txt_Question.Text;
+                    questionToUpdate.Answer1 = txt_Answer1.Text;
+                    questionToUpdate.Answer2 = txt_Answer2.Text;
+                    questionToUpdate.Answer3 = txt_Answer3.Text;
+                    questionToUpdate.Answer4 = txt_Answer4.Text;
+                    questionToUpdate.CorrectNr = (byte)np_CorrectAnsw.Value;
+                    factory.UpdateQuestion(questionToUpdate);
+                    helper.ShowMessage("Question updated successfully.", lbl_Message, true);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error updating question: " + ex.Message);
                 }
             }
             else
             {
-                Question newQuestion = GenerateNewQuestion((long)gv_Tests.SelectedRows[0].Cells["Id_Test"].Value);
+                Question newQuestion = GenerateNewQuestion(testId);
                 try
                 {
                     factory.AddQuestion(newQuestion);
-                    MessageBox.Show("Question added successfully.");
-                    helper.ClearForm(this.Controls);
+                    helper.ShowMessage("Question added successfully.", lbl_Message, true);
                 }
                 catch (Exception ex)
                 {
@@ -183,6 +186,7 @@ namespace Survey.Forms
             }
             questions = factory.GetQuestionViewByTestId(testId);
             helper.ReloadGrid<QuestionView>(gv_Questions, questions, false);
+            helper.ClearForm(gb_newQuestion.Controls);
         }
         private void btn_ClearQ_Click(object sender, EventArgs e)
         {
@@ -205,7 +209,7 @@ namespace Survey.Forms
                             factory.DeleteTest(testToDelete);
                             tests = factory.GetTests();
                             helper.ReloadGrid<TestView>(gv_Tests, tests, true);
-                            MessageBox.Show("Test deleted successfully.");
+                            helper.ShowMessage("Test deleted successfully.", lbl_Message, true);
                         }
                         catch (Exception ex)
                         {

@@ -5,18 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="dfe6139868934cfc8a17b06cbd571c58" Name="Diagram1">
-        <EntityTypeShape EntityType="SurveyModel.Answer" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="SurveyModel.GroupName" Width="1.5" PointX="1.5" PointY="9.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SurveyModel.Person" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="SurveyModel.Question" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SurveyModel.Test" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SurveyModel.TestResult" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="SurveyModel.FK_Answers_Questions" ManuallyRouted="false" />
-        <AssociationConnector Association="SurveyModel.FK_Answers_TestResults" ManuallyRouted="false" />
         <AssociationConnector Association="SurveyModel.FK_Persons_GroupName" ManuallyRouted="false" />
         <AssociationConnector Association="SurveyModel.FK_TestResults_Persons" ManuallyRouted="false" />
-        <AssociationConnector Association="SurveyModel.FK_Questions_Tests" ManuallyRouted="false" />
-        <AssociationConnector Association="SurveyModel.FK_TestResults_Tests" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SurveyModel.Answer" Width="1.5" PointX="8.25" PointY="3.5" />
+        <EntityTypeShape EntityType="SurveyModel.Question" Width="1.5" PointX="3" PointY="5.625" />
+        <EntityTypeShape EntityType="SurveyModel.Test" Width="1.5" PointX="0.75" PointY="0.875" />
+        <AssociationConnector Association="SurveyModel.FK_Answer_Question" />
+        <AssociationConnector Association="SurveyModel.FK_Answers_TestResults" />
+        <AssociationConnector Association="SurveyModel.FK_Question_Test" />
+        <AssociationConnector Association="SurveyModel.FK_TestResult_Test" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

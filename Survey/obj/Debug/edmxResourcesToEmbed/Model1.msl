@@ -1,17 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="SurveyModelStoreContainer" CdmEntityContainer="SurveyEntities">
-    <EntitySetMapping Name="Answer">
-      <EntityTypeMapping TypeName="SurveyModel.Answer">
-        <MappingFragment StoreEntitySet="Answer">
-          <ScalarProperty Name="Id_Answers" ColumnName="Id_Answers" />
-          <ScalarProperty Name="Id_TestResult" ColumnName="Id_TestResult" />
-          <ScalarProperty Name="Id_Question" ColumnName="Id_Question" />
-          <ScalarProperty Name="AnswerNr" ColumnName="AnswerNr" />
-          <ScalarProperty Name="Time" ColumnName="Time" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="GroupName">
       <EntityTypeMapping TypeName="SurveyModel.GroupName">
         <MappingFragment StoreEntitySet="GroupName">
@@ -30,32 +19,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Question">
-      <EntityTypeMapping TypeName="SurveyModel.Question">
-        <MappingFragment StoreEntitySet="Question">
-          <ScalarProperty Name="Id_Question" ColumnName="Id_Question" />
-          <ScalarProperty Name="Id_Test" ColumnName="Id_Test" />
-          <ScalarProperty Name="Question1" ColumnName="Question" />
-          <ScalarProperty Name="Answer1" ColumnName="Answer1" />
-          <ScalarProperty Name="Answer2" ColumnName="Answer2" />
-          <ScalarProperty Name="Answer3" ColumnName="Answer3" />
-          <ScalarProperty Name="Answer4" ColumnName="Answer4" />
-          <ScalarProperty Name="CorrectNr" ColumnName="CorrectNr" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Test">
-      <EntityTypeMapping TypeName="SurveyModel.Test">
-        <MappingFragment StoreEntitySet="Test">
-          <ScalarProperty Name="Id_Test" ColumnName="Id_Test" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Duration" ColumnName="Duration" />
-          <ScalarProperty Name="Author" ColumnName="Author" />
-          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="TestResult">
       <EntityTypeMapping TypeName="SurveyModel.TestResult">
         <MappingFragment StoreEntitySet="TestResult">
@@ -65,6 +28,43 @@
           <ScalarProperty Name="ExecutionDate" ColumnName="ExecutionDate" />
           <ScalarProperty Name="TimeSpent" ColumnName="TimeSpent" />
           <ScalarProperty Name="IsPass" ColumnName="IsPass" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Answer">
+      <EntityTypeMapping TypeName="SurveyModel.Answer">
+        <MappingFragment StoreEntitySet="Answer">
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="AnswerNr" ColumnName="AnswerNr" />
+          <ScalarProperty Name="Id_Question" ColumnName="Id_Question" />
+          <ScalarProperty Name="Id_TestResult" ColumnName="Id_TestResult" />
+          <ScalarProperty Name="Id_Answers" ColumnName="Id_Answers" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Question">
+      <EntityTypeMapping TypeName="SurveyModel.Question">
+        <MappingFragment StoreEntitySet="Question">
+          <ScalarProperty Name="CorrectNr" ColumnName="CorrectNr" />
+          <ScalarProperty Name="Answer4" ColumnName="Answer4" />
+          <ScalarProperty Name="Answer3" ColumnName="Answer3" />
+          <ScalarProperty Name="Answer2" ColumnName="Answer2" />
+          <ScalarProperty Name="Answer1" ColumnName="Answer1" />
+          <ScalarProperty Name="Question1" ColumnName="Question" />
+          <ScalarProperty Name="Id_Test" ColumnName="Id_Test" />
+          <ScalarProperty Name="Id_Question" ColumnName="Id_Question" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Test">
+      <EntityTypeMapping TypeName="SurveyModel.Test">
+        <MappingFragment StoreEntitySet="Test">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Author" ColumnName="Author" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id_Test" ColumnName="Id_Test" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

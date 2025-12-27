@@ -44,7 +44,7 @@
       <PropertyRef Name="Id_Test" />
     </Key>
     <Property Name="Id_Test" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Duration" Type="smallint" />
     <Property Name="Author" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="CreateDate" Type="datetime" Nullable="false" />
@@ -61,7 +61,7 @@
     <Property Name="TimeSpent" Type="smallint" Nullable="false" />
     <Property Name="IsPass" Type="bit" Nullable="false" />
   </EntityType>
-  <Association Name="FK_Answers_Questions">
+  <Association Name="FK_Answer_Question">
     <End Role="Question" Type="Self.Question" Multiplicity="1" />
     <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
     <ReferentialConstraint>
@@ -97,7 +97,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Questions_Tests">
+  <Association Name="FK_Question_Test">
     <End Role="Test" Type="Self.Test" Multiplicity="1" />
     <End Role="Question" Type="Self.Question" Multiplicity="*" />
     <ReferentialConstraint>
@@ -105,6 +105,18 @@
         <PropertyRef Name="Id_Test" />
       </Principal>
       <Dependent Role="Question">
+        <PropertyRef Name="Id_Test" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestResult_Test">
+    <End Role="Test" Type="Self.Test" Multiplicity="1" />
+    <End Role="TestResult" Type="Self.TestResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Test">
+        <PropertyRef Name="Id_Test" />
+      </Principal>
+      <Dependent Role="TestResult">
         <PropertyRef Name="Id_Test" />
       </Dependent>
     </ReferentialConstraint>
@@ -121,18 +133,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_TestResults_Tests">
-    <End Role="Test" Type="Self.Test" Multiplicity="1" />
-    <End Role="TestResult" Type="Self.TestResult" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Test">
-        <PropertyRef Name="Id_Test" />
-      </Principal>
-      <Dependent Role="TestResult">
-        <PropertyRef Name="Id_Test" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="SurveyModelStoreContainer">
     <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GroupName" EntityType="Self.GroupName" Schema="dbo" store:Type="Tables" />
@@ -140,7 +140,7 @@
     <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Test" EntityType="Self.Test" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TestResult" EntityType="Self.TestResult" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_Answers_Questions" Association="Self.FK_Answers_Questions">
+    <AssociationSet Name="FK_Answer_Question" Association="Self.FK_Answer_Question">
       <End Role="Question" EntitySet="Question" />
       <End Role="Answer" EntitySet="Answer" />
     </AssociationSet>
@@ -152,16 +152,16 @@
       <End Role="GroupName" EntitySet="GroupName" />
       <End Role="Person" EntitySet="Person" />
     </AssociationSet>
-    <AssociationSet Name="FK_Questions_Tests" Association="Self.FK_Questions_Tests">
+    <AssociationSet Name="FK_Question_Test" Association="Self.FK_Question_Test">
       <End Role="Test" EntitySet="Test" />
       <End Role="Question" EntitySet="Question" />
     </AssociationSet>
-    <AssociationSet Name="FK_TestResults_Persons" Association="Self.FK_TestResults_Persons">
-      <End Role="Person" EntitySet="Person" />
+    <AssociationSet Name="FK_TestResult_Test" Association="Self.FK_TestResult_Test">
+      <End Role="Test" EntitySet="Test" />
       <End Role="TestResult" EntitySet="TestResult" />
     </AssociationSet>
-    <AssociationSet Name="FK_TestResults_Tests" Association="Self.FK_TestResults_Tests">
-      <End Role="Test" EntitySet="Test" />
+    <AssociationSet Name="FK_TestResults_Persons" Association="Self.FK_TestResults_Persons">
+      <End Role="Person" EntitySet="Person" />
       <End Role="TestResult" EntitySet="TestResult" />
     </AssociationSet>
   </EntityContainer>

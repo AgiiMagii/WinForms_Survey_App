@@ -9,6 +9,7 @@ namespace Survey.Lib
 {
     public class Helper
     {
+        private readonly TimeSpan _defaultDuration = TimeSpan.FromSeconds(5);
         public void ReloadGrid<T>(DataGridView grid, List<T> items, bool IsDelete) where T : class
         {
             if (grid.Columns.Contains("btnDelete"))
@@ -62,6 +63,29 @@ namespace Survey.Lib
                     ClearForm(control.Controls);
                 }
             }
+        }
+        public void ShowMessage( string message, Label label, bool IsTimer)
+        {
+            if (IsTimer)
+            {
+                label.Text = message;
+                Timer timer = new Timer
+                {
+                    Interval = (int)_defaultDuration.TotalMilliseconds
+                };
+                timer.Tick += (s, e) =>
+                {
+                    label.Text = string.Empty;
+                    timer.Stop();
+                    timer.Dispose();
+                };
+                timer.Start();
+            }
+            else
+            {
+                MessageBox.Show(message);
+            }
+
         }
     }
 }

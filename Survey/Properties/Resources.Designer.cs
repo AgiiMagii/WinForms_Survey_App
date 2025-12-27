@@ -83,6 +83,16 @@ namespace Survey.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap hand_7702606_1280 {
+            get {
+                object obj = ResourceManager.GetObject("hand-7702606_1280", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap man_3653346_1280 {
             get {
                 object obj = ResourceManager.GetObject("man-3653346_1280", resourceCulture);
