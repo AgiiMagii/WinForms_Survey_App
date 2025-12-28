@@ -95,5 +95,9 @@ namespace Survey.Lib
         {
             repository.DeleteEntity<Test>(test);
         }
+        public void DeleteQuestion(Question question)
+        {
+            repository.DeleteEntity<Question>(question);
+        }
     }
 }

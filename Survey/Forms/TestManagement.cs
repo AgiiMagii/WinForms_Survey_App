@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace Survey.Forms
 {
@@ -16,6 +17,8 @@ namespace Survey.Forms
     {
         Helper helper = new Helper();
         Factory factory = new Factory();
+        Validation validation = new Validation();
+        private ErrorProvider errorProvider = new ErrorProvider();
         Test selectedTest = null;
         List<TestView> tests = new List<TestView>();
         List<QuestionView> questions = new List<QuestionView>();
@@ -25,6 +28,39 @@ namespace Survey.Forms
         {
             InitializeComponent();
             _main = main;
+            AttachTextBoxEvents(gb_newQuestion);
+            AttachTextBoxEvents(gb_regForm);
+            errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            errorProvider.ContainerControl = this;
+        }
+        private void AttachTextBoxEvents(Control parent)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                if (control is TextBox tb)
+                {
+                    tb.TextChanged += TextBox_TextChanged;
+                }
+
+                if (control.HasChildren)
+                {
+                    AttachTextBoxEvents(control);
+                }
+            }
+        }
+        public void UpdateError(Control control, bool isValid, string errorMessage)
+        {
+            if (!isValid)
+            {
+                control.BackColor = Color.MistyRose;
+                errorProvider.SetError(control, errorMessage);
+
+            }
+            else
+            {
+                control.BackColor = Color.White;
+                errorProvider.SetError(control, "");
+            }
         }
         private void btn_back_Click(object sender, EventArgs e)
         {
@@ -107,26 +143,17 @@ namespace Survey.Forms
                     np_Duration.Value = selectedTest.Duration.HasValue ? selectedTest.Duration.Value : 0;
                     txt_Author.Text = selectedTest.Author;
                     chb_IsActive.Checked = selectedTest.IsActive;
-                    helper.ReloadGrid<QuestionView>(gv_Questions, questions, false);
+                    helper.ReloadGrid<QuestionView>(gv_Questions, questions, true);
                 }
             }
         }
         private void btn_Clear_Click(object sender, EventArgs e)
         {
-            helper.ClearForm(gb_regForm.Controls);
+            helper.ClearForm(this.Controls);
             gv_Tests.ClearSelection();
+            gv_Questions.DataSource = null;
         }
-        private void pb_EditTest_Click(object sender, EventArgs e)
-        {
-            if (!gb_regForm.Visible)
-            {
-                gb_regForm.Visible = true;
-            }
-            else
-            {
-                gb_regForm.Visible = false;
-            }
-        }
+        
         private void gv_Questions_SelectionChanged(object sender, EventArgs e)
         {
             if (gv_Questions.SelectedRows.Count > 0)
@@ -143,7 +170,7 @@ namespace Survey.Forms
         {
             if (gv_Tests.SelectedRows.Count == 0)
             {
-                helper.ShowMessage("Please select a test first.", lbl_Message, false);
+                helper.ShowMessage("Please select a test first.", lbl_Message, true);
                 return;
             }
 
@@ -185,7 +212,7 @@ namespace Survey.Forms
                 }
             }
             questions = factory.GetQuestionViewByTestId(testId);
-            helper.ReloadGrid<QuestionView>(gv_Questions, questions, false);
+            helper.ReloadGrid<QuestionView>(gv_Questions, questions, true);
             helper.ClearForm(gb_newQuestion.Controls);
         }
         private void btn_ClearQ_Click(object sender, EventArgs e)
@@ -218,6 +245,61 @@ namespace Survey.Forms
                     }
                 }
             }
+        }
+        private void gv_Questions_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == gv_Questions.Columns["btnDelete"].Index)
+            {
+                long questionId = (long)gv_Questions.Rows[e.RowIndex].Cells["Id_Question"].Value;
+                Question questionToDelete = factory.GetQuestionEntities().FirstOrDefault(q => q.Id_Question == questionId);
+                if (questionToDelete != null)
+                {
+                    DialogResult confirmResult = MessageBox.Show("Are you sure to delete this question?", "Confirm Delete", MessageBoxButtons.YesNo);
+                    if (confirmResult == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            factory.DeleteQuestion(questionToDelete);
+                            long testId = (long)gv_Tests.SelectedRows[0].Cells["Id_Test"].Value;
+                            questions = factory.GetQuestionViewByTestId(testId);
+                            helper.ReloadGrid<QuestionView>(gv_Questions, questions, true);
+                            helper.ShowMessage("Question deleted successfully.", lbl_Message, true);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error deleting question: " + ex.Message);
+                        }
+                    }
+                }
+            }
+        }
+        private void TextBox_TextChanged(object sender, EventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            if (tb == txt_Question)
+                UpdateError(tb, Validation.IsQuestionValidSoFar(tb.Text), "Question must be between 2-250 chars long.");
+            else
+                UpdateError(tb, Validation.IsInputTextValidSoFar(tb.Text), "Text must be between 2-50 chars long.");
+        }
+
+        private void btn_EditQuest_Click(object sender, EventArgs e)
+        {
+            bool willShow = !gb_newQuestion.Visible;
+            gb_newQuestion.Visible = willShow;
+
+            // Aizver otru, ja jaunais tiek atvērts
+            if (willShow)
+                gb_regForm.Visible = false;
+        }
+
+        private void btn_EditTest_Click(object sender, EventArgs e)
+        {
+            bool willShow = !gb_regForm.Visible;
+            gb_regForm.Visible = willShow;
+
+            // Aizver otru, ja jaunais tiek atvērts
+            if (willShow)
+                gb_newQuestion.Visible = false;
         }
     }
 }

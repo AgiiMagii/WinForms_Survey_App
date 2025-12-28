@@ -80,6 +80,7 @@
     <Compile Include="Lib\Factory.cs" />
     <Compile Include="Lib\Helper.cs" />
     <Compile Include="Lib\Repository.cs" />
+    <Compile Include="Lib\Validation.cs" />
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

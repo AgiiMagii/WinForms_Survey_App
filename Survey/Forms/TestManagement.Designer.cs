@@ -37,6 +37,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.gb_regForm = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btn_Clear = new System.Windows.Forms.Button();
@@ -58,17 +60,15 @@
             this.gb_newQuestion = new System.Windows.Forms.GroupBox();
             this.btn_ClearQ = new System.Windows.Forms.Button();
             this.btn_ProcessQuest = new System.Windows.Forms.Button();
-            this.pb_EditTest = new System.Windows.Forms.PictureBox();
             this.lbl_Message = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
+            this.btn_EditTest = new System.Windows.Forms.Button();
+            this.btn_EditQuest = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.np_Duration)).BeginInit();
             this.gb_regForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gv_Tests)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_Questions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.np_CorrectAnsw)).BeginInit();
             this.gb_newQuestion.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_EditTest)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_back
@@ -160,23 +160,39 @@
             this.gb_regForm.Controls.Add(this.label13);
             this.gb_regForm.Controls.Add(this.label12);
             this.gb_regForm.Controls.Add(this.label11);
-            this.gb_regForm.Controls.Add(this.label4);
-            this.gb_regForm.Controls.Add(this.btn_Clear);
-            this.gb_regForm.Controls.Add(this.btn_Process);
+            this.gb_regForm.Controls.Add(this.label2);
+            this.gb_regForm.Controls.Add(this.label3);
+            this.gb_regForm.Controls.Add(this.label1);
             this.gb_regForm.Controls.Add(this.txt_Name);
+            this.gb_regForm.Controls.Add(this.label4);
             this.gb_regForm.Controls.Add(this.np_Duration);
             this.gb_regForm.Controls.Add(this.txt_Author);
-            this.gb_regForm.Controls.Add(this.label3);
-            this.gb_regForm.Controls.Add(this.label2);
             this.gb_regForm.Controls.Add(this.chb_IsActive);
-            this.gb_regForm.Controls.Add(this.label1);
-            this.gb_regForm.Location = new System.Drawing.Point(12, 86);
+            this.gb_regForm.Controls.Add(this.btn_Clear);
+            this.gb_regForm.Controls.Add(this.btn_Process);
+            this.gb_regForm.Location = new System.Drawing.Point(12, 79);
             this.gb_regForm.Name = "gb_regForm";
-            this.gb_regForm.Size = new System.Drawing.Size(226, 461);
+            this.gb_regForm.Size = new System.Drawing.Size(262, 464);
             this.gb_regForm.TabIndex = 10;
             this.gb_regForm.TabStop = false;
             this.gb_regForm.Text = "Update and Register";
             this.gb_regForm.Visible = false;
+            // 
+            // label13
+            // 
+            this.label13.Location = new System.Drawing.Point(25, 115);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(184, 47);
+            this.label13.TabIndex = 16;
+            this.label13.Text = "● To register a new test when the\r\n existing one is selected, clear the form";
+            // 
+            // label12
+            // 
+            this.label12.Location = new System.Drawing.Point(25, 82);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(184, 33);
+            this.label12.TabIndex = 15;
+            this.label12.Text = "● Select a test to make corrections and process to update";
             // 
             // label11
             // 
@@ -197,7 +213,7 @@
             // 
             // btn_Clear
             // 
-            this.btn_Clear.Location = new System.Drawing.Point(28, 382);
+            this.btn_Clear.Location = new System.Drawing.Point(25, 390);
             this.btn_Clear.Name = "btn_Clear";
             this.btn_Clear.Size = new System.Drawing.Size(75, 23);
             this.btn_Clear.TabIndex = 12;
@@ -207,7 +223,7 @@
             // 
             // btn_Process
             // 
-            this.btn_Process.Location = new System.Drawing.Point(25, 413);
+            this.btn_Process.Location = new System.Drawing.Point(25, 421);
             this.btn_Process.Name = "btn_Process";
             this.btn_Process.Size = new System.Drawing.Size(184, 23);
             this.btn_Process.TabIndex = 11;
@@ -220,9 +236,9 @@
             this.gv_Tests.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gv_Tests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gv_Tests.Location = new System.Drawing.Point(254, 12);
+            this.gv_Tests.Location = new System.Drawing.Point(297, 12);
             this.gv_Tests.Name = "gv_Tests";
-            this.gv_Tests.Size = new System.Drawing.Size(718, 136);
+            this.gv_Tests.Size = new System.Drawing.Size(674, 174);
             this.gv_Tests.TabIndex = 11;
             this.gv_Tests.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gv_Tests_CellContentClick);
             this.gv_Tests.SelectionChanged += new System.EventHandler(this.gv_Tests_SelectionChanged);
@@ -233,67 +249,78 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gv_Questions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gv_Questions.Location = new System.Drawing.Point(254, 194);
+            this.gv_Questions.Location = new System.Drawing.Point(297, 259);
             this.gv_Questions.Name = "gv_Questions";
-            this.gv_Questions.Size = new System.Drawing.Size(718, 135);
+            this.gv_Questions.Size = new System.Drawing.Size(674, 221);
             this.gv_Questions.TabIndex = 12;
+            this.gv_Questions.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gv_Questions_CellContentClick);
             this.gv_Questions.SelectionChanged += new System.EventHandler(this.gv_Questions_SelectionChanged);
             // 
             // txt_Question
             // 
             this.txt_Question.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_Question.Location = new System.Drawing.Point(135, 41);
+            this.txt_Question.Location = new System.Drawing.Point(23, 48);
             this.txt_Question.Name = "txt_Question";
-            this.txt_Question.Size = new System.Drawing.Size(536, 20);
+            this.txt_Question.Size = new System.Drawing.Size(216, 20);
             this.txt_Question.TabIndex = 13;
             // 
             // txt_Answer1
             // 
-            this.txt_Answer1.Location = new System.Drawing.Point(135, 83);
+            this.txt_Answer1.Location = new System.Drawing.Point(23, 137);
             this.txt_Answer1.Name = "txt_Answer1";
-            this.txt_Answer1.Size = new System.Drawing.Size(307, 20);
+            this.txt_Answer1.Size = new System.Drawing.Size(217, 20);
             this.txt_Answer1.TabIndex = 14;
             // 
             // txt_Answer4
             // 
-            this.txt_Answer4.Location = new System.Drawing.Point(135, 161);
+            this.txt_Answer4.Location = new System.Drawing.Point(22, 254);
             this.txt_Answer4.Name = "txt_Answer4";
-            this.txt_Answer4.Size = new System.Drawing.Size(307, 20);
+            this.txt_Answer4.Size = new System.Drawing.Size(218, 20);
             this.txt_Answer4.TabIndex = 15;
             // 
             // txt_Answer2
             // 
-            this.txt_Answer2.Location = new System.Drawing.Point(135, 109);
+            this.txt_Answer2.Location = new System.Drawing.Point(23, 176);
             this.txt_Answer2.Name = "txt_Answer2";
-            this.txt_Answer2.Size = new System.Drawing.Size(307, 20);
+            this.txt_Answer2.Size = new System.Drawing.Size(217, 20);
             this.txt_Answer2.TabIndex = 16;
             // 
             // txt_Answer3
             // 
-            this.txt_Answer3.Location = new System.Drawing.Point(135, 135);
+            this.txt_Answer3.Location = new System.Drawing.Point(22, 215);
             this.txt_Answer3.Name = "txt_Answer3";
-            this.txt_Answer3.Size = new System.Drawing.Size(307, 20);
+            this.txt_Answer3.Size = new System.Drawing.Size(217, 20);
             this.txt_Answer3.TabIndex = 17;
             // 
             // np_CorrectAnsw
             // 
             this.np_CorrectAnsw.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.np_CorrectAnsw.Location = new System.Drawing.Point(561, 86);
+            this.np_CorrectAnsw.Location = new System.Drawing.Point(165, 336);
             this.np_CorrectAnsw.Maximum = new decimal(new int[] {
             4,
             0,
             0,
             0});
+            this.np_CorrectAnsw.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.np_CorrectAnsw.Name = "np_CorrectAnsw";
-            this.np_CorrectAnsw.Size = new System.Drawing.Size(110, 20);
+            this.np_CorrectAnsw.Size = new System.Drawing.Size(75, 20);
             this.np_CorrectAnsw.TabIndex = 18;
+            this.np_CorrectAnsw.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(55, 44);
+            this.label5.Location = new System.Drawing.Point(21, 32);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(74, 13);
             this.label5.TabIndex = 20;
@@ -302,7 +329,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(466, 88);
+            this.label6.Location = new System.Drawing.Point(150, 309);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(89, 13);
             this.label6.TabIndex = 21;
@@ -311,7 +338,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(78, 86);
+            this.label7.Location = new System.Drawing.Point(20, 118);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(51, 13);
             this.label7.TabIndex = 22;
@@ -320,7 +347,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(78, 112);
+            this.label8.Location = new System.Drawing.Point(20, 160);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(51, 13);
             this.label8.TabIndex = 23;
@@ -329,7 +356,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(78, 138);
+            this.label9.Location = new System.Drawing.Point(20, 199);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(51, 13);
             this.label9.TabIndex = 24;
@@ -338,7 +365,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(78, 164);
+            this.label10.Location = new System.Drawing.Point(20, 238);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(51, 13);
             this.label10.TabIndex = 25;
@@ -348,29 +375,30 @@
             // 
             this.gb_newQuestion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.gb_newQuestion.Controls.Add(this.btn_ClearQ);
-            this.gb_newQuestion.Controls.Add(this.btn_ProcessQuest);
-            this.gb_newQuestion.Controls.Add(this.txt_Answer1);
-            this.gb_newQuestion.Controls.Add(this.label10);
             this.gb_newQuestion.Controls.Add(this.txt_Question);
-            this.gb_newQuestion.Controls.Add(this.label5);
-            this.gb_newQuestion.Controls.Add(this.txt_Answer4);
+            this.gb_newQuestion.Controls.Add(this.label8);
+            this.gb_newQuestion.Controls.Add(this.btn_ProcessQuest);
+            this.gb_newQuestion.Controls.Add(this.label7);
+            this.gb_newQuestion.Controls.Add(this.txt_Answer3);
+            this.gb_newQuestion.Controls.Add(this.label6);
+            this.gb_newQuestion.Controls.Add(this.txt_Answer1);
+            this.gb_newQuestion.Controls.Add(this.txt_Answer2);
+            this.gb_newQuestion.Controls.Add(this.label10);
             this.gb_newQuestion.Controls.Add(this.np_CorrectAnsw);
             this.gb_newQuestion.Controls.Add(this.label9);
-            this.gb_newQuestion.Controls.Add(this.label6);
-            this.gb_newQuestion.Controls.Add(this.txt_Answer2);
-            this.gb_newQuestion.Controls.Add(this.label7);
-            this.gb_newQuestion.Controls.Add(this.label8);
-            this.gb_newQuestion.Controls.Add(this.txt_Answer3);
-            this.gb_newQuestion.Location = new System.Drawing.Point(254, 340);
+            this.gb_newQuestion.Controls.Add(this.txt_Answer4);
+            this.gb_newQuestion.Controls.Add(this.label5);
+            this.gb_newQuestion.Location = new System.Drawing.Point(12, 79);
             this.gb_newQuestion.Name = "gb_newQuestion";
-            this.gb_newQuestion.Size = new System.Drawing.Size(718, 207);
+            this.gb_newQuestion.Size = new System.Drawing.Size(262, 464);
             this.gb_newQuestion.TabIndex = 26;
             this.gb_newQuestion.TabStop = false;
-            this.gb_newQuestion.Text = "Add a Question";
+            this.gb_newQuestion.Text = "Update and Register";
+            this.gb_newQuestion.Visible = false;
             // 
             // btn_ClearQ
             // 
-            this.btn_ClearQ.Location = new System.Drawing.Point(469, 128);
+            this.btn_ClearQ.Location = new System.Drawing.Point(24, 390);
             this.btn_ClearQ.Name = "btn_ClearQ";
             this.btn_ClearQ.Size = new System.Drawing.Size(75, 23);
             this.btn_ClearQ.TabIndex = 28;
@@ -380,23 +408,13 @@
             // 
             // btn_ProcessQuest
             // 
-            this.btn_ProcessQuest.Location = new System.Drawing.Point(469, 159);
+            this.btn_ProcessQuest.Location = new System.Drawing.Point(24, 421);
             this.btn_ProcessQuest.Name = "btn_ProcessQuest";
-            this.btn_ProcessQuest.Size = new System.Drawing.Size(202, 23);
+            this.btn_ProcessQuest.Size = new System.Drawing.Size(168, 23);
             this.btn_ProcessQuest.TabIndex = 26;
             this.btn_ProcessQuest.Text = "Process";
             this.btn_ProcessQuest.UseVisualStyleBackColor = true;
             this.btn_ProcessQuest.Click += new System.EventHandler(this.btn_ProcessQuest_Click);
-            // 
-            // pb_EditTest
-            // 
-            this.pb_EditTest.Image = global::Survey.Properties.Resources.Custom_Icon_Design_Mono_General_2_Edit_64;
-            this.pb_EditTest.Location = new System.Drawing.Point(159, 12);
-            this.pb_EditTest.Name = "pb_EditTest";
-            this.pb_EditTest.Size = new System.Drawing.Size(79, 68);
-            this.pb_EditTest.TabIndex = 27;
-            this.pb_EditTest.TabStop = false;
-            this.pb_EditTest.Click += new System.EventHandler(this.pb_EditTest_Click);
             // 
             // lbl_Message
             // 
@@ -404,40 +422,45 @@
             this.lbl_Message.AutoSize = true;
             this.lbl_Message.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Message.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.lbl_Message.Location = new System.Drawing.Point(467, 154);
+            this.lbl_Message.Location = new System.Drawing.Point(474, 206);
             this.lbl_Message.Name = "lbl_Message";
             this.lbl_Message.Size = new System.Drawing.Size(0, 25);
             this.lbl_Message.TabIndex = 28;
             this.lbl_Message.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // label12
+            // btn_EditTest
             // 
-            this.label12.Location = new System.Drawing.Point(25, 82);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(184, 33);
-            this.label12.TabIndex = 15;
-            this.label12.Text = "● Select a test to make corrections and process to update";
+            this.btn_EditTest.Image = global::Survey.Properties.Resources.Awicons_Vista_Artistic_Add_48;
+            this.btn_EditTest.Location = new System.Drawing.Point(297, 191);
+            this.btn_EditTest.Name = "btn_EditTest";
+            this.btn_EditTest.Size = new System.Drawing.Size(70, 61);
+            this.btn_EditTest.TabIndex = 29;
+            this.btn_EditTest.UseVisualStyleBackColor = true;
+            this.btn_EditTest.Click += new System.EventHandler(this.btn_EditTest_Click);
             // 
-            // label13
+            // btn_EditQuest
             // 
-            this.label13.Location = new System.Drawing.Point(25, 115);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(184, 33);
-            this.label13.TabIndex = 16;
-            this.label13.Text = "● To register a new test when the\r\n existing one is selected, clear the form";
+            this.btn_EditQuest.Image = global::Survey.Properties.Resources.Awicons_Vista_Artistic_Add_48;
+            this.btn_EditQuest.Location = new System.Drawing.Point(297, 486);
+            this.btn_EditQuest.Name = "btn_EditQuest";
+            this.btn_EditQuest.Size = new System.Drawing.Size(70, 61);
+            this.btn_EditQuest.TabIndex = 30;
+            this.btn_EditQuest.UseVisualStyleBackColor = true;
+            this.btn_EditQuest.Click += new System.EventHandler(this.btn_EditQuest_Click);
             // 
             // TestManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 559);
-            this.Controls.Add(this.lbl_Message);
-            this.Controls.Add(this.pb_EditTest);
+            this.ClientSize = new System.Drawing.Size(983, 557);
             this.Controls.Add(this.gb_newQuestion);
+            this.Controls.Add(this.gb_regForm);
+            this.Controls.Add(this.btn_EditTest);
+            this.Controls.Add(this.lbl_Message);
             this.Controls.Add(this.gv_Questions);
             this.Controls.Add(this.gv_Tests);
-            this.Controls.Add(this.gb_regForm);
             this.Controls.Add(this.btn_back);
+            this.Controls.Add(this.btn_EditQuest);
             this.Name = "TestManagement";
             this.Text = "Test Management";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TestManagement_FormClosing);
@@ -450,7 +473,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.np_CorrectAnsw)).EndInit();
             this.gb_newQuestion.ResumeLayout(false);
             this.gb_newQuestion.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_EditTest)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -483,7 +505,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox gb_newQuestion;
-        private System.Windows.Forms.PictureBox pb_EditTest;
         private System.Windows.Forms.Button btn_Clear;
         private System.Windows.Forms.Button btn_ProcessQuest;
         private System.Windows.Forms.Button btn_ClearQ;
@@ -492,5 +513,7 @@
         private System.Windows.Forms.Label lbl_Message;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button btn_EditTest;
+        private System.Windows.Forms.Button btn_EditQuest;
     }
 }
