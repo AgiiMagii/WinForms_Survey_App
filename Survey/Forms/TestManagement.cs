@@ -1,4 +1,5 @@
 ﻿using Survey.Lib;
+using Survey.Properties;
 using Survey.Views;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace Survey.Forms
         Validation validation = new Validation();
         private ErrorProvider errorProvider = new ErrorProvider();
         Test selectedTest = null;
+        List<string> errors = new List<string>();
         List<TestView> tests = new List<TestView>();
         List<QuestionView> questions = new List<QuestionView>();
 
@@ -103,32 +105,55 @@ namespace Survey.Forms
         }
         private void btn_Process_Click(object sender, EventArgs e)
         {
-            if (gv_Tests.SelectedRows.Count > 0)
+            try
             {
-                long testId = (long)gv_Tests.SelectedRows[0].Cells["Id_Test"].Value;
-                Test testToUpdate = factory.GetTestEntities().FirstOrDefault(t => t.Id_Test == testId);
-                if (testToUpdate != null)
+                if (gv_Tests.SelectedRows.Count > 0)
                 {
-                    testToUpdate.Name = txt_Name.Text;
-                    testToUpdate.Duration = np_Duration.Value > 0 ? (short?)np_Duration.Value : null;
-                    testToUpdate.Author = txt_Author.Text;
-                    testToUpdate.CreateDate = DateTime.Now;
-                    testToUpdate.IsActive = chb_IsActive.Checked;
 
-                    factory.UpdateTest(testToUpdate);
-                    helper.ShowMessage("Test updated successfully.", lbl_Message, true);
+                    long testId = (long)gv_Tests.SelectedRows[0].Cells["Id_Test"].Value;
+                    Test testToUpdate = factory.GetTestEntities().FirstOrDefault(t => t.Id_Test == testId);
+                    if (testToUpdate != null)
+                    {
+                        testToUpdate.Name = txt_Name.Text;
+                        testToUpdate.Duration = np_Duration.Value > 0 ? (short?)np_Duration.Value : null;
+                        testToUpdate.Author = txt_Author.Text;
+                        testToUpdate.CreateDate = DateTime.Now;
+                        testToUpdate.IsActive = chb_IsActive.Checked;
+
+                        errors = validation.TestValidation(testToUpdate);
+                        if (errors.Count > 0)
+                        {
+                            string errorMessage = string.Join("\n", errors);
+                            helper.ShowMessage(errorMessage, lbl_Message, true);
+                            return;
+                        }
+
+                        factory.UpdateTest(testToUpdate);
+                        helper.ShowMessage(Messages.Info_UpdateSuccess, lbl_Message, true);
+                    }
                 }
+                else
+                {
+                    Test newTest = GenerateNewTest();
+                    errors = validation.TestValidation(newTest);
+                    if (errors.Count > 0)
+                    {
+                        string errorMessage = string.Join("\n", errors);
+                        helper.ShowMessage(errorMessage, lbl_Message, true);
+                        return;
+                    }
+                    factory.AddTest(newTest);
+                    helper.ShowMessage(Messages.Info_CreateSuccess, lbl_Message, true);
+                }
+                tests = factory.GetTests();
+                helper.ReloadGrid<TestView>(gv_Tests, tests, true);
+                helper.ClearForm(this.Controls);
+                gb_regForm.Visible = false;
             }
-            else
+            catch (Exception ex)
             {
-                Test newTest = GenerateNewTest();
-                factory.AddTest(newTest);
-                helper.ShowMessage("Test added successfully.", lbl_Message, true);
+                MessageBox.Show(Messages.Error_Process + ex.Message);
             }
-            tests = factory.GetTests();
-            helper.ReloadGrid<TestView>(gv_Tests, tests, true);
-            helper.ClearForm(this.Controls);
-            gb_regForm.Visible = false;
         }
         private void gv_Tests_SelectionChanged(object sender, EventArgs e)
         {
@@ -153,7 +178,6 @@ namespace Survey.Forms
             gv_Tests.ClearSelection();
             gv_Questions.DataSource = null;
         }
-        
         private void gv_Questions_SelectionChanged(object sender, EventArgs e)
         {
             if (gv_Questions.SelectedRows.Count > 0)
@@ -170,7 +194,7 @@ namespace Survey.Forms
         {
             if (gv_Tests.SelectedRows.Count == 0)
             {
-                helper.ShowMessage("Please select a test first.", lbl_Message, true);
+                helper.ShowMessage(Messages.Warning_Select, lbl_Message, true);
                 return;
             }
 
@@ -178,10 +202,11 @@ namespace Survey.Forms
             long? questionId = gv_Questions.SelectedRows.Count > 0
                 ? (long?)gv_Questions.SelectedRows[0].Cells["Id_Question"].Value
                 : null;
-            if (questionId != null)
+            try
             {
-                try
+                if (questionId != null)
                 {
+
                     Question questionToUpdate = factory.GetQuestionEntities().FirstOrDefault(q => q.Id_Question == questionId);
                     questionToUpdate.Id_Test = testId;
                     questionToUpdate.Question1 = txt_Question.Text;
@@ -190,30 +215,40 @@ namespace Survey.Forms
                     questionToUpdate.Answer3 = txt_Answer3.Text;
                     questionToUpdate.Answer4 = txt_Answer4.Text;
                     questionToUpdate.CorrectNr = (byte)np_CorrectAnsw.Value;
+
+                    errors = validation.QuestionValidation(questionToUpdate);
+                    if (errors.Count > 0)
+                    {
+                        string errorMessage = string.Join("\n", errors);
+                        helper.ShowMessage(errorMessage, lbl_Message, true);
+                        return;
+                    }
+
                     factory.UpdateQuestion(questionToUpdate);
-                    helper.ShowMessage("Question updated successfully.", lbl_Message, true);
+                    helper.ShowMessage(Messages.Info_UpdateSuccess, lbl_Message, true);
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Error updating question: " + ex.Message);
-                }
-            }
-            else
-            {
-                Question newQuestion = GenerateNewQuestion(testId);
-                try
-                {
+                    Question newQuestion = GenerateNewQuestion(testId);
+                    errors = validation.QuestionValidation(newQuestion);
+                    if (errors.Count > 0)
+                    {
+                        string errorMessage = string.Join("\n", errors);
+                        helper.ShowMessage(errorMessage, lbl_Message, true);
+                        return;
+                    }
+
                     factory.AddQuestion(newQuestion);
-                    helper.ShowMessage("Question added successfully.", lbl_Message, true);
+                    helper.ShowMessage(Messages.Info_CreateSuccess, lbl_Message, true);
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error adding question: " + ex.Message);
-                }
+                questions = factory.GetQuestionViewByTestId(testId);
+                helper.ReloadGrid<QuestionView>(gv_Questions, questions, true);
+                helper.ClearForm(gb_newQuestion.Controls);
             }
-            questions = factory.GetQuestionViewByTestId(testId);
-            helper.ReloadGrid<QuestionView>(gv_Questions, questions, true);
-            helper.ClearForm(gb_newQuestion.Controls);
+            catch (Exception ex)
+            {
+                MessageBox.Show(Messages.Error_Process + ex.Message);
+            }
         }
         private void btn_ClearQ_Click(object sender, EventArgs e)
         {
@@ -228,7 +263,7 @@ namespace Survey.Forms
                 Test testToDelete = factory.GetTestById(testId);
                 if (testToDelete != null)
                 {
-                    DialogResult confirmResult = MessageBox.Show("Are you sure to delete this test?", "Confirm Delete", MessageBoxButtons.YesNo);
+                    DialogResult confirmResult = MessageBox.Show(Messages.Warning_Delete, "Confirm Delete", MessageBoxButtons.YesNo);
                     if (confirmResult == DialogResult.Yes)
                     {
                         try
@@ -236,11 +271,11 @@ namespace Survey.Forms
                             factory.DeleteTest(testToDelete);
                             tests = factory.GetTests();
                             helper.ReloadGrid<TestView>(gv_Tests, tests, true);
-                            helper.ShowMessage("Test deleted successfully.", lbl_Message, true);
+                            helper.ShowMessage(Messages.Info_DeleteSuccess, lbl_Message, true);
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("Error deleting test: " + ex.Message);
+                            MessageBox.Show(Messages.Error_Delete + ex.Message);
                         }
                     }
                 }
@@ -254,7 +289,7 @@ namespace Survey.Forms
                 Question questionToDelete = factory.GetQuestionEntities().FirstOrDefault(q => q.Id_Question == questionId);
                 if (questionToDelete != null)
                 {
-                    DialogResult confirmResult = MessageBox.Show("Are you sure to delete this question?", "Confirm Delete", MessageBoxButtons.YesNo);
+                    DialogResult confirmResult = MessageBox.Show(Messages.Warning_Delete, "Confirm Delete", MessageBoxButtons.YesNo);
                     if (confirmResult == DialogResult.Yes)
                     {
                         try
@@ -263,11 +298,11 @@ namespace Survey.Forms
                             long testId = (long)gv_Tests.SelectedRows[0].Cells["Id_Test"].Value;
                             questions = factory.GetQuestionViewByTestId(testId);
                             helper.ReloadGrid<QuestionView>(gv_Questions, questions, true);
-                            helper.ShowMessage("Question deleted successfully.", lbl_Message, true);
+                            helper.ShowMessage(Messages.Info_DeleteSuccess, lbl_Message, true);
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("Error deleting question: " + ex.Message);
+                            MessageBox.Show(Messages.Error_Delete + ex.Message);
                         }
                     }
                 }
@@ -277,27 +312,23 @@ namespace Survey.Forms
         {
             TextBox tb = sender as TextBox;
             if (tb == txt_Question)
-                UpdateError(tb, Validation.IsQuestionValidSoFar(tb.Text), "Question must be between 2-250 chars long.");
+                UpdateError(tb, Validation.IsQuestionValidSoFar(tb.Text), Messages.Error_TextTooLong);
             else
-                UpdateError(tb, Validation.IsInputTextValidSoFar(tb.Text), "Text must be between 2-50 chars long.");
+                UpdateError(tb, Validation.IsInputTextValidSoFar(tb.Text), Messages.Error_TextTooLong);
         }
-
         private void btn_EditQuest_Click(object sender, EventArgs e)
         {
             bool willShow = !gb_newQuestion.Visible;
             gb_newQuestion.Visible = willShow;
 
-            // Aizver otru, ja jaunais tiek atvērts
             if (willShow)
                 gb_regForm.Visible = false;
         }
-
         private void btn_EditTest_Click(object sender, EventArgs e)
         {
             bool willShow = !gb_regForm.Visible;
             gb_regForm.Visible = willShow;
 
-            // Aizver otru, ja jaunais tiek atvērts
             if (willShow)
                 gb_newQuestion.Visible = false;
         }
