@@ -63,6 +63,7 @@
             this.lbl_Message = new System.Windows.Forms.Label();
             this.btn_EditTest = new System.Windows.Forms.Button();
             this.btn_EditQuest = new System.Windows.Forms.Button();
+            this.btn_LogOut = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.np_Duration)).BeginInit();
             this.gb_regForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gv_Tests)).BeginInit();
@@ -448,11 +449,22 @@
             this.btn_EditQuest.UseVisualStyleBackColor = true;
             this.btn_EditQuest.Click += new System.EventHandler(this.btn_EditQuest_Click);
             // 
+            // btn_LogOut
+            // 
+            this.btn_LogOut.Location = new System.Drawing.Point(896, 520);
+            this.btn_LogOut.Name = "btn_LogOut";
+            this.btn_LogOut.Size = new System.Drawing.Size(75, 23);
+            this.btn_LogOut.TabIndex = 31;
+            this.btn_LogOut.Text = "Log Out";
+            this.btn_LogOut.UseVisualStyleBackColor = true;
+            this.btn_LogOut.Click += new System.EventHandler(this.btn_LogOut_Click);
+            // 
             // TestManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(983, 557);
+            this.Controls.Add(this.btn_LogOut);
             this.Controls.Add(this.gb_newQuestion);
             this.Controls.Add(this.gb_regForm);
             this.Controls.Add(this.btn_EditTest);
@@ -515,5 +527,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btn_EditTest;
         private System.Windows.Forms.Button btn_EditQuest;
+        private System.Windows.Forms.Button btn_LogOut;
     }
 }

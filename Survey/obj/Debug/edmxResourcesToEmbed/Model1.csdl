@@ -18,6 +18,9 @@
     <Property Name="GroupName" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="GroupName1" Relationship="Self.FK_Persons_GroupName" FromRole="Person" ToRole="GroupName" />
     <NavigationProperty Name="TestResult" Relationship="Self.FK_TestResults_Persons" FromRole="Person" ToRole="TestResult" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="TestResult">
     <Key>

@@ -151,7 +151,7 @@ namespace Survey.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please select a record first!.
+        ///   Looks up a localized string similar to Please select test first!.
         /// </summary>
         internal static string Warning_Select {
             get {

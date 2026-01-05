@@ -11,8 +11,8 @@
         <AssociationConnector Association="SurveyModel.FK_Persons_GroupName" ManuallyRouted="false" />
         <AssociationConnector Association="SurveyModel.FK_TestResults_Persons" ManuallyRouted="false" />
         <EntityTypeShape EntityType="SurveyModel.Answer" Width="1.5" PointX="8.25" PointY="3.5" />
-        <EntityTypeShape EntityType="SurveyModel.Question" Width="1.5" PointX="3" PointY="5.625" />
-        <EntityTypeShape EntityType="SurveyModel.Test" Width="1.5" PointX="0.75" PointY="0.875" />
+        <EntityTypeShape EntityType="SurveyModel.Question" Width="1.5" PointX="4.75" PointY="5.25" />
+        <EntityTypeShape EntityType="SurveyModel.Test" Width="1.5" PointX="0.5" PointY="4.5" />
         <AssociationConnector Association="SurveyModel.FK_Answer_Question" />
         <AssociationConnector Association="SurveyModel.FK_Answers_TestResults" />
         <AssociationConnector Association="SurveyModel.FK_Question_Test" />

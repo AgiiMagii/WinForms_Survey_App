@@ -26,10 +26,17 @@ namespace Survey.Forms
         List<QuestionView> questions = new List<QuestionView>();
 
         private readonly Main _main;
-        public TestManagement(Main main)
+        private string loggedInUser;
+        private bool isAdmin;
+
+        public TestManagement(Main main, string loggedUser, bool isAdmin)
         {
             InitializeComponent();
             _main = main;
+            loggedInUser = loggedUser;
+            this.isAdmin = isAdmin;
+            Text = $"Test Management - {loggedInUser}";
+
             AttachTextBoxEvents(gb_newQuestion);
             AttachTextBoxEvents(gb_regForm);
             errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
@@ -331,6 +338,14 @@ namespace Survey.Forms
 
             if (willShow)
                 gb_newQuestion.Visible = false;
+        }
+        private void btn_LogOut_Click(object sender, EventArgs e)
+        {
+            _main.LogOut();
+            _main.Location = this.Location;
+            _main.Size = this.Size;
+            _main.Show();
+            this.Close();
         }
     }
 }

@@ -25,6 +25,9 @@
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="GroupName" Type="nvarchar" MaxLength="4" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsAdmin" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Question">
     <Key>
@@ -85,7 +88,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Persons_GroupName">
+  <Association Name="FK_Person_GroupName">
     <End Role="GroupName" Type="Self.GroupName" Multiplicity="1" />
     <End Role="Person" Type="Self.Person" Multiplicity="*" />
     <ReferentialConstraint>
@@ -109,6 +112,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_TestResult_Person">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="TestResult" Type="Self.TestResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id_Person" />
+      </Principal>
+      <Dependent Role="TestResult">
+        <PropertyRef Name="Id_Person" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_TestResult_Test">
     <End Role="Test" Type="Self.Test" Multiplicity="1" />
     <End Role="TestResult" Type="Self.TestResult" Multiplicity="*" />
@@ -118,18 +133,6 @@
       </Principal>
       <Dependent Role="TestResult">
         <PropertyRef Name="Id_Test" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TestResults_Persons">
-    <End Role="Person" Type="Self.Person" Multiplicity="1" />
-    <End Role="TestResult" Type="Self.TestResult" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Person">
-        <PropertyRef Name="Id_Person" />
-      </Principal>
-      <Dependent Role="TestResult">
-        <PropertyRef Name="Id_Person" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -148,7 +151,7 @@
       <End Role="TestResult" EntitySet="TestResult" />
       <End Role="Answer" EntitySet="Answer" />
     </AssociationSet>
-    <AssociationSet Name="FK_Persons_GroupName" Association="Self.FK_Persons_GroupName">
+    <AssociationSet Name="FK_Person_GroupName" Association="Self.FK_Person_GroupName">
       <End Role="GroupName" EntitySet="GroupName" />
       <End Role="Person" EntitySet="Person" />
     </AssociationSet>
@@ -156,12 +159,12 @@
       <End Role="Test" EntitySet="Test" />
       <End Role="Question" EntitySet="Question" />
     </AssociationSet>
-    <AssociationSet Name="FK_TestResult_Test" Association="Self.FK_TestResult_Test">
-      <End Role="Test" EntitySet="Test" />
+    <AssociationSet Name="FK_TestResult_Person" Association="Self.FK_TestResult_Person">
+      <End Role="Person" EntitySet="Person" />
       <End Role="TestResult" EntitySet="TestResult" />
     </AssociationSet>
-    <AssociationSet Name="FK_TestResults_Persons" Association="Self.FK_TestResults_Persons">
-      <End Role="Person" EntitySet="Person" />
+    <AssociationSet Name="FK_TestResult_Test" Association="Self.FK_TestResult_Test">
+      <End Role="Test" EntitySet="Test" />
       <End Role="TestResult" EntitySet="TestResult" />
     </AssociationSet>
   </EntityContainer>

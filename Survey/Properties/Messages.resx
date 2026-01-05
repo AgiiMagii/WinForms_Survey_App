@@ -148,6 +148,6 @@
     <value>Are you sure to delete this record?</value>
   </data>
   <data name="Warning_Select" xml:space="preserve">
-    <value>Please select a record first!</value>
+    <value>Please select test first!</value>
   </data>
 </root>
