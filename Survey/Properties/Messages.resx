@@ -147,6 +147,12 @@
   <data name="Warning_Delete" xml:space="preserve">
     <value>Are you sure to delete this record?</value>
   </data>
+  <data name="Warning_Login" xml:space="preserve">
+    <value>Incorrect password or user name!</value>
+  </data>
+  <data name="Warning_PasswordMatch" xml:space="preserve">
+    <value>Password not matching!</value>
+  </data>
   <data name="Warning_Select" xml:space="preserve">
     <value>Please select test first!</value>
   </data>

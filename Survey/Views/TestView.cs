@@ -14,5 +14,7 @@ namespace Survey.Views
         public string Author { get; set; }
         public System.DateTime CreateDate { get; set; }
         public bool IsActive { get; set; }
+
+       
     }
 }

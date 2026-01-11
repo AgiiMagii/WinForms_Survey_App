@@ -3,28 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\User\\Documents\\C_sharp\\Darbini\\Survey\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C87F54FB-CF4B-4D4A-9DBE-94C4398860CF}|Survey\\Survey.csproj|C:\\Users\\User\\Documents\\C_sharp\\Darbini\\Survey\\survey\\forms\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{C87F54FB-CF4B-4D4A-9DBE-94C4398860CF}|Survey\\Survey.csproj|solutionrelative:survey\\forms\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C87F54FB-CF4B-4D4A-9DBE-94C4398860CF}|Survey\\Survey.csproj|C:\\Users\\User\\Documents\\C_sharp\\Darbini\\Survey\\survey\\forms\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C87F54FB-CF4B-4D4A-9DBE-94C4398860CF}|Survey\\Survey.csproj|solutionrelative:survey\\forms\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C87F54FB-CF4B-4D4A-9DBE-94C4398860CF}|Survey\\Survey.csproj|C:\\Users\\User\\Documents\\C_sharp\\Darbini\\Survey\\survey\\forms\\testmanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{C87F54FB-CF4B-4D4A-9DBE-94C4398860CF}|Survey\\Survey.csproj|solutionrelative:survey\\forms\\testmanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{C87F54FB-CF4B-4D4A-9DBE-94C4398860CF}|Survey\\Survey.csproj|C:\\Users\\User\\Documents\\C_sharp\\Darbini\\Survey\\survey\\forms\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C87F54FB-CF4B-4D4A-9DBE-94C4398860CF}|Survey\\Survey.csproj|solutionrelative:survey\\forms\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C87F54FB-CF4B-4D4A-9DBE-94C4398860CF}|Survey\\Survey.csproj|C:\\Users\\User\\Documents\\C_sharp\\Darbini\\Survey\\survey\\lib\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C87F54FB-CF4B-4D4A-9DBE-94C4398860CF}|Survey\\Survey.csproj|solutionrelative:survey\\lib\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C87F54FB-CF4B-4D4A-9DBE-94C4398860CF}|Survey\\Survey.csproj|c:\\users\\user\\documents\\c_sharp\\darbini\\survey\\survey\\forms\\usermanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C87F54FB-CF4B-4D4A-9DBE-94C4398860CF}|Survey\\Survey.csproj|solutionrelative:survey\\forms\\usermanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C87F54FB-CF4B-4D4A-9DBE-94C4398860CF}|Survey\\Survey.csproj|c:\\users\\user\\documents\\c_sharp\\darbini\\survey\\survey\\lib\\factory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C87F54FB-CF4B-4D4A-9DBE-94C4398860CF}|Survey\\Survey.csproj|c:\\users\\user\\documents\\c_sharp\\darbini\\survey\\survey\\properties\\messages.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}",
+      "RelativeMoniker": "D:0:0:{C87F54FB-CF4B-4D4A-9DBE-94C4398860CF}|Survey\\Survey.csproj|solutionrelative:survey\\properties\\messages.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C87F54FB-CF4B-4D4A-9DBE-94C4398860CF}|Survey\\Survey.csproj|C:\\Users\\User\\Documents\\C_sharp\\Darbini\\Survey\\survey\\lib\\factory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C87F54FB-CF4B-4D4A-9DBE-94C4398860CF}|Survey\\Survey.csproj|solutionrelative:survey\\lib\\factory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C87F54FB-CF4B-4D4A-9DBE-94C4398860CF}|Survey\\Survey.csproj|C:\\Users\\User\\Documents\\C_sharp\\Darbini\\Survey\\survey\\forms\\testmanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C87F54FB-CF4B-4D4A-9DBE-94C4398860CF}|Survey\\Survey.csproj|c:\\users\\user\\documents\\c_sharp\\darbini\\survey\\survey\\forms\\testmanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C87F54FB-CF4B-4D4A-9DBE-94C4398860CF}|Survey\\Survey.csproj|solutionrelative:survey\\forms\\testmanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C87F54FB-CF4B-4D4A-9DBE-94C4398860CF}|Survey\\Survey.csproj|C:\\Users\\User\\Documents\\C_sharp\\Darbini\\Survey\\survey\\forms\\testmanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C87F54FB-CF4B-4D4A-9DBE-94C4398860CF}|Survey\\Survey.csproj|solutionrelative:survey\\forms\\testmanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,8 +38,59 @@
       "DocumentGroups": [
         {
           "DockedWidth": 77,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Main.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\C_sharp\\Darbini\\Survey\\Survey\\Forms\\Main.cs",
+              "RelativeDocumentMoniker": "Survey\\Forms\\Main.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\C_sharp\\Darbini\\Survey\\Survey\\Forms\\Main.cs",
+              "RelativeToolTip": "Survey\\Forms\\Main.cs",
+              "ViewState": "AgIAACIAAACAAAAAAIA0wI8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T16:54:27.082Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "TestManagement.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\C_sharp\\Darbini\\Survey\\Survey\\Forms\\TestManagement.cs",
+              "RelativeDocumentMoniker": "Survey\\Forms\\TestManagement.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\C_sharp\\Darbini\\Survey\\Survey\\Forms\\TestManagement.cs [Design]",
+              "RelativeToolTip": "Survey\\Forms\\TestManagement.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T16:51:09.318Z",
+              "IsPinned": true,
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserManagement.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\C_sharp\\Darbini\\Survey\\Survey\\Forms\\UserManagement.cs",
+              "RelativeDocumentMoniker": "Survey\\Forms\\UserManagement.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\C_sharp\\Darbini\\Survey\\Survey\\Forms\\UserManagement.cs [Design]",
+              "RelativeToolTip": "Survey\\Forms\\UserManagement.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-11T19:44:13.746Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Messages.resx",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\C_sharp\\Darbini\\Survey\\Survey\\Properties\\Messages.resx",
+              "RelativeDocumentMoniker": "Survey\\Properties\\Messages.resx",
+              "ToolTip": "C:\\Users\\User\\Documents\\C_sharp\\Darbini\\Survey\\Survey\\Properties\\Messages.resx",
+              "RelativeToolTip": "Survey\\Properties\\Messages.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2026-01-11T19:01:55.142Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 5,
@@ -44,9 +99,9 @@
               "RelativeDocumentMoniker": "Survey\\Forms\\TestManagement.cs",
               "ToolTip": "C:\\Users\\User\\Documents\\C_sharp\\Darbini\\Survey\\Survey\\Forms\\TestManagement.cs",
               "RelativeToolTip": "Survey\\Forms\\TestManagement.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAABJAAAAAAAAAA==",
+              "ViewState": "AgIAAAIAAAAAzczMzMwnwB8AAABJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-27T10:43:03.352Z",
+              "WhenOpened": "2026-01-11T13:23:51.175Z",
               "EditorCaption": ""
             },
             {
@@ -57,52 +112,14 @@
               "RelativeDocumentMoniker": "Survey\\Lib\\Factory.cs",
               "ToolTip": "C:\\Users\\User\\Documents\\C_sharp\\Darbini\\Survey\\Survey\\Lib\\Factory.cs",
               "RelativeToolTip": "Survey\\Lib\\Factory.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGAAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHYAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-15T18:03:33.467Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Repository.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Documents\\C_sharp\\Darbini\\Survey\\Survey\\Lib\\Repository.cs",
-              "RelativeDocumentMoniker": "Survey\\Lib\\Repository.cs",
-              "ToolTip": "C:\\Users\\User\\Documents\\C_sharp\\Darbini\\Survey\\Survey\\Lib\\Repository.cs",
-              "RelativeToolTip": "Survey\\Lib\\Repository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC4AAAA6AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T18:03:16.626Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "TestManagement.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\User\\Documents\\C_sharp\\Darbini\\Survey\\Survey\\Forms\\TestManagement.cs",
-              "RelativeDocumentMoniker": "Survey\\Forms\\TestManagement.cs",
-              "ToolTip": "C:\\Users\\User\\Documents\\C_sharp\\Darbini\\Survey\\Survey\\Forms\\TestManagement.cs [Design]",
-              "RelativeToolTip": "Survey\\Forms\\TestManagement.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T16:51:09.318Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Main.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Documents\\C_sharp\\Darbini\\Survey\\Survey\\Forms\\Main.cs",
-              "RelativeDocumentMoniker": "Survey\\Forms\\Main.cs",
-              "ToolTip": "C:\\Users\\User\\Documents\\C_sharp\\Darbini\\Survey\\Survey\\Forms\\Main.cs",
-              "RelativeToolTip": "Survey\\Forms\\Main.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T16:54:27.082Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "Main.cs [Design]",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\C_sharp\\Darbini\\Survey\\Survey\\Forms\\Main.cs",
               "RelativeDocumentMoniker": "Survey\\Forms\\Main.cs",

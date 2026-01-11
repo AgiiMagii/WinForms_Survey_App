@@ -25,11 +25,11 @@ namespace Survey
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<GroupName> GroupName { get; set; }
-        public virtual DbSet<Person> Person { get; set; }
         public virtual DbSet<TestResult> TestResult { get; set; }
         public virtual DbSet<Answer> Answer { get; set; }
         public virtual DbSet<Question> Question { get; set; }
         public virtual DbSet<Test> Test { get; set; }
+        public virtual DbSet<GroupName> GroupName { get; set; }
+        public virtual DbSet<Person> Person { get; set; }
     }
 }

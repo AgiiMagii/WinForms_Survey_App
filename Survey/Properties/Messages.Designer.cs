@@ -151,6 +151,24 @@ namespace Survey.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Incorrect password or user name!.
+        /// </summary>
+        internal static string Warning_Login {
+            get {
+                return ResourceManager.GetString("Warning_Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password not matching!.
+        /// </summary>
+        internal static string Warning_PasswordMatch {
+            get {
+                return ResourceManager.GetString("Warning_PasswordMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please select test first!.
         /// </summary>
         internal static string Warning_Select {

@@ -27,9 +27,9 @@ namespace Survey
         public short TimeSpent { get; set; }
         public bool IsPass { get; set; }
     
-        public virtual Person Person { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Answer> Answer { get; set; }
         public virtual Test Test { get; set; }
+        public virtual Person Person { get; set; }
     }
 }

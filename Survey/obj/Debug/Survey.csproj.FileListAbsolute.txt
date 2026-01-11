@@ -14,5 +14,15 @@ C:\Users\User\Documents\C_sharp\Darbini\Survey\Survey\obj\Debug\Survey.csproj.Co
 C:\Users\User\Documents\C_sharp\Darbini\Survey\Survey\obj\Debug\Survey.csproj.Up2Date
 C:\Users\User\Documents\C_sharp\Darbini\Survey\Survey\obj\Debug\Survey.exe
 C:\Users\User\Documents\C_sharp\Darbini\Survey\Survey\obj\Debug\Survey.pdb
-C:\Users\User\Documents\C_sharp\Darbini\Survey\Survey\obj\Debug\Survey.exe.config
 C:\Users\User\Documents\C_sharp\Darbini\Survey\Survey\obj\Debug\Survey.Properties.Messages.resources
+C:\Users\User\Documents\C_sharp\Darbini\Survey\Survey\bin\Debug\BCrypt.Net-Next.dll
+C:\Users\User\Documents\C_sharp\Darbini\Survey\Survey\bin\Debug\System.Buffers.dll
+C:\Users\User\Documents\C_sharp\Darbini\Survey\Survey\bin\Debug\System.Memory.dll
+C:\Users\User\Documents\C_sharp\Darbini\Survey\Survey\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\User\Documents\C_sharp\Darbini\Survey\Survey\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\User\Documents\C_sharp\Darbini\Survey\Survey\bin\Debug\BCrypt.Net-Next.xml
+C:\Users\User\Documents\C_sharp\Darbini\Survey\Survey\bin\Debug\System.Buffers.xml
+C:\Users\User\Documents\C_sharp\Darbini\Survey\Survey\bin\Debug\System.Memory.xml
+C:\Users\User\Documents\C_sharp\Darbini\Survey\Survey\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\User\Documents\C_sharp\Darbini\Survey\Survey\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\User\Documents\C_sharp\Darbini\Survey\Survey\obj\Debug\Survey.exe.config

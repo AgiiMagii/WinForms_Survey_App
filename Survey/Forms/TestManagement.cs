@@ -27,14 +27,14 @@ namespace Survey.Forms
 
         private readonly Main _main;
         private string loggedInUser;
-        private bool isAdmin;
+        private bool _isAdmin;
 
         public TestManagement(Main main, string loggedUser, bool isAdmin)
         {
             InitializeComponent();
             _main = main;
             loggedInUser = loggedUser;
-            this.isAdmin = isAdmin;
+            _isAdmin = isAdmin;
             Text = $"Test Management - {loggedInUser}";
 
             AttachTextBoxEvents(gb_newQuestion);
@@ -183,7 +183,11 @@ namespace Survey.Forms
         {
             helper.ClearForm(this.Controls);
             gv_Tests.ClearSelection();
+            gv_Questions.ClearSelection();
             gv_Questions.DataSource = null;
+            gv_Questions.Rows.Clear();
+            gv_Questions.AllowUserToAddRows = false;
+
         }
         private void gv_Questions_SelectionChanged(object sender, EventArgs e)
         {

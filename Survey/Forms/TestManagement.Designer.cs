@@ -451,6 +451,7 @@
             // 
             // btn_LogOut
             // 
+            this.btn_LogOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_LogOut.Location = new System.Drawing.Point(896, 520);
             this.btn_LogOut.Name = "btn_LogOut";
             this.btn_LogOut.Size = new System.Drawing.Size(75, 23);

@@ -1,27 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="SurveyModelStoreContainer" CdmEntityContainer="SurveyEntities">
-    <EntitySetMapping Name="GroupName">
-      <EntityTypeMapping TypeName="SurveyModel.GroupName">
-        <MappingFragment StoreEntitySet="GroupName">
-          <ScalarProperty Name="GroupName1" ColumnName="GroupName" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Person">
-      <EntityTypeMapping TypeName="SurveyModel.Person">
-        <MappingFragment StoreEntitySet="Person">
-          <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="Id_Person" ColumnName="Id_Person" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Surname" ColumnName="Surname" />
-          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="TestResult">
       <EntityTypeMapping TypeName="SurveyModel.TestResult">
         <MappingFragment StoreEntitySet="TestResult">
@@ -68,6 +47,31 @@
           <ScalarProperty Name="Duration" ColumnName="Duration" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id_Test" ColumnName="Id_Test" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupName">
+      <EntityTypeMapping TypeName="SurveyModel.GroupName">
+        <MappingFragment StoreEntitySet="GroupName">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="GroupName1" ColumnName="GroupName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Person">
+      <EntityTypeMapping TypeName="SurveyModel.Person">
+        <MappingFragment StoreEntitySet="Person">
+          <ScalarProperty Name="LastLoginAt" ColumnName="LastLoginAt" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id_Person" ColumnName="Id_Person" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

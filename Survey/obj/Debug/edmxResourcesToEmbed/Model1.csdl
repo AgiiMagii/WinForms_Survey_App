@@ -1,27 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="SurveyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="GroupName">
-    <Key>
-      <PropertyRef Name="GroupName1" />
-    </Key>
-    <Property Name="GroupName1" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Person" Relationship="Self.FK_Persons_GroupName" FromRole="GroupName" ToRole="Person" />
-  </EntityType>
-  <EntityType Name="Person">
-    <Key>
-      <PropertyRef Name="Id_Person" />
-    </Key>
-    <Property Name="Id_Person" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="GroupName" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="GroupName1" Relationship="Self.FK_Persons_GroupName" FromRole="Person" ToRole="GroupName" />
-    <NavigationProperty Name="TestResult" Relationship="Self.FK_TestResults_Persons" FromRole="Person" ToRole="TestResult" />
-    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
-  </EntityType>
   <EntityType Name="TestResult">
     <Key>
       <PropertyRef Name="Id_TestResult" />
@@ -32,46 +10,12 @@
     <Property Name="ExecutionDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="TimeSpent" Type="Int16" Nullable="false" />
     <Property Name="IsPass" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="Person" Relationship="Self.FK_TestResults_Persons" FromRole="TestResult" ToRole="Person" />
     <NavigationProperty Name="Answer" Relationship="SurveyModel.FK_Answers_TestResults" FromRole="TestResult" ToRole="Answer" />
     <NavigationProperty Name="Test" Relationship="SurveyModel.FK_TestResult_Test" FromRole="TestResult" ToRole="Test" />
+    <NavigationProperty Name="Person" Relationship="SurveyModel.FK_TestResult_Person" FromRole="TestResult" ToRole="Person" />
   </EntityType>
-  <Association Name="FK_Persons_GroupName">
-    <End Role="GroupName" Type="Self.GroupName" Multiplicity="1" />
-    <End Role="Person" Type="Self.Person" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="GroupName">
-        <PropertyRef Name="GroupName1" />
-      </Principal>
-      <Dependent Role="Person">
-        <PropertyRef Name="GroupName" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TestResults_Persons">
-    <End Role="Person" Type="Self.Person" Multiplicity="1" />
-    <End Role="TestResult" Type="Self.TestResult" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Person">
-        <PropertyRef Name="Id_Person" />
-      </Principal>
-      <Dependent Role="TestResult">
-        <PropertyRef Name="Id_Person" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="SurveyEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="GroupName" EntityType="Self.GroupName" />
-    <EntitySet Name="Person" EntityType="Self.Person" />
     <EntitySet Name="TestResult" EntityType="Self.TestResult" />
-    <AssociationSet Name="FK_Persons_GroupName" Association="Self.FK_Persons_GroupName">
-      <End Role="GroupName" EntitySet="GroupName" />
-      <End Role="Person" EntitySet="Person" />
-    </AssociationSet>
-    <AssociationSet Name="FK_TestResults_Persons" Association="Self.FK_TestResults_Persons">
-      <End Role="Person" EntitySet="Person" />
-      <End Role="TestResult" EntitySet="TestResult" />
-    </AssociationSet>
     <EntitySet Name="Answer" EntityType="SurveyModel.Answer" />
     <EntitySet Name="Question" EntityType="SurveyModel.Question" />
     <EntitySet Name="Test" EntityType="SurveyModel.Test" />
@@ -89,6 +33,16 @@
     </AssociationSet>
     <AssociationSet Name="FK_TestResult_Test" Association="SurveyModel.FK_TestResult_Test">
       <End Role="Test" EntitySet="Test" />
+      <End Role="TestResult" EntitySet="TestResult" />
+    </AssociationSet>
+    <EntitySet Name="GroupName" EntityType="SurveyModel.GroupName" />
+    <EntitySet Name="Person" EntityType="SurveyModel.Person" />
+    <AssociationSet Name="FK_Person_GroupName" Association="SurveyModel.FK_Person_GroupName">
+      <End Role="GroupName" EntitySet="GroupName" />
+      <End Role="Person" EntitySet="Person" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestResult_Person" Association="SurveyModel.FK_TestResult_Person">
+      <End Role="Person" EntitySet="Person" />
       <End Role="TestResult" EntitySet="TestResult" />
     </AssociationSet>
   </EntityContainer>
@@ -177,6 +131,56 @@
       </Principal>
       <Dependent Role="TestResult">
         <PropertyRef Name="Id_Test" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="GroupName">
+    <Key>
+      <PropertyRef Name="GroupName1" />
+    </Key>
+    <Property Name="GroupName1" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Person" Relationship="SurveyModel.FK_Person_GroupName" FromRole="GroupName" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="Id_Person" />
+    </Key>
+    <Property Name="Id_Person" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GroupName" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="LastLoginAt" Type="DateTime" Precision="7" />
+    <NavigationProperty Name="GroupName1" Relationship="SurveyModel.FK_Person_GroupName" FromRole="Person" ToRole="GroupName" />
+    <NavigationProperty Name="TestResult" Relationship="SurveyModel.FK_TestResult_Person" FromRole="Person" ToRole="TestResult" />
+  </EntityType>
+  <Association Name="FK_Person_GroupName">
+    <End Type="SurveyModel.GroupName" Role="GroupName" Multiplicity="1" />
+    <End Type="SurveyModel.Person" Role="Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupName">
+        <PropertyRef Name="GroupName1" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="GroupName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestResult_Person">
+    <End Type="SurveyModel.Person" Role="Person" Multiplicity="1" />
+    <End Type="SurveyModel.TestResult" Role="TestResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id_Person" />
+      </Principal>
+      <Dependent Role="TestResult">
+        <PropertyRef Name="Id_Person" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -1,5 +1,6 @@
 ﻿using Survey.Forms;
 using Survey.Lib;
+using Survey.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ namespace Survey
 {
     public partial class Main : Form
     {
+        Factory factory = new Factory();
         Helper helper = new Helper();
         private string loggedInUser;
         private bool isAdmin;
@@ -32,46 +34,35 @@ namespace Survey
         }
         private void btn_logIn_Click(object sender, EventArgs e)
         {
-            string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=Survey;Integrated Security=True";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            string username = txt_userName.Text.Trim();
+            string password = txt_password.Text;
+            Person person = factory.Login(username, password);
+            if (person == null)
             {
-                string query = "SELECT IsAdmin FROM Person WHERE UserName=@UserName AND Password=@Password";
-                SqlCommand command = new SqlCommand(query, connection);
-
-                command.Parameters.AddWithValue("@UserName", txt_userName.Text);
-                command.Parameters.AddWithValue("@Password", txt_password.Text);
-
-                connection.Open();
-
-                object result = command.ExecuteScalar();
-
-                if (result != null)
-                {
-                    loggedInUser = txt_userName.Text;
-                    isAdmin = Convert.ToBoolean(result);
-
-                    pn_Login.Visible = false;
-                    flowLayoutPanel1.Visible = true;
-
-                    if (isAdmin)
-                    {
-                        btn_toTestMng.Visible = true;
-                        btn_MyTests.Visible = true;
-                    }
-                    else
-                    {
-                        btn_MyTests.Visible = true;
-                    }
-                    Text = $"Survey - {loggedInUser}";
-                    helper.ClearForm(Controls);
-                    btn_logOut.Visible = true;
-                }
-                else
-                {
-                    MessageBox.Show("Invalid username or password.");
-                }
+                MessageBox.Show("Nepareizs lietotājvārds vai parole.");
+                return;
             }
+            loggedInUser = person.Username;
+            isAdmin = person.IsAdmin;
+            factory.UpdateLastLogin(person);
+            pn_Login.Visible = false;
+            flowLayoutPanel1.Visible = true;
+            btn_MyTests.Visible = true;
+            if (isAdmin)
+            {
+                btn_toTestMng.Visible = true;
+                btn_ToUsers.Visible = true;
+            }
+            else
+            {
+                btn_toTestMng.Visible = false;
+                btn_ToUsers.Visible = false;
+            }
+            Text = $"Survey - {loggedInUser}";
+            helper.ClearForm(Controls);
+            btn_logOut.Visible = true;
+
+
         }
         public void LogOut()
         {
@@ -87,6 +78,70 @@ namespace Survey
         private void btn_logOut_Click(object sender, EventArgs e)
         {
             LogOut();
+        }
+
+        private void LoadComboGroup()
+        {
+            cb_GroupName.DataSource = factory.GetGroupNames();
+            cb_GroupName.DisplayMember = "GroupName1";
+            cb_GroupName.ValueMember = "GroupName1";
+            cb_GroupName.SelectedIndex = 0;
+        }
+
+        private void lbl_Register_Click(object sender, EventArgs e)
+        {
+            LoadComboGroup();
+            
+            
+            pn_Login.Visible = false;
+            pnl_Register.Visible = true;
+        }
+
+        private void lbl_LogIn_Click(object sender, EventArgs e)
+        {
+            pnl_Register.Visible = false;
+            pn_Login.Visible = true;
+        }
+
+        private void btn_Register_Click(object sender, EventArgs e)
+        {
+            string confirmPassword = txt_confirmPass.Text;
+            PersonReg personReg = new PersonReg
+            {
+                Name = txt_Name.Text.Trim(),
+                Surname = txt_Surname.Text.Trim(),
+                GroupName = cb_GroupName.SelectedValue.ToString(),
+                Username = txt_userN.Text.Trim(),
+                Email = txt_email.Text.Trim(),
+                Password = txt_NewPassword.Text.Trim()
+            };
+            if (personReg.Password != confirmPassword)
+            {
+                MessageBox.Show("Paroles nesakrīt!");
+                return;
+            }
+            bool registrationResult = factory.RegisterPerson(personReg);
+            if (registrationResult)
+            {
+                MessageBox.Show("Reģistrācija veiksmīga!");
+                pnl_Register.Visible = false;
+                pn_Login.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("Reģistrācija neizdevās! Iespējams, ka lietotājvārds vai e-pasts jau eksistē.");
+            }
+
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void lbl_forgotPass_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
