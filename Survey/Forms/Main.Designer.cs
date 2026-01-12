@@ -31,6 +31,7 @@
             this.btn_toTestMng = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pn_Login = new System.Windows.Forms.Panel();
+            this.lbl_forgotPass = new System.Windows.Forms.Label();
             this.lbl_Register = new System.Windows.Forms.Label();
             this.btn_logIn = new System.Windows.Forms.Button();
             this.txt_password = new System.Windows.Forms.TextBox();
@@ -41,6 +42,7 @@
             this.btn_MyTests = new System.Windows.Forms.Button();
             this.btn_logOut = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btn_ToUsers = new System.Windows.Forms.Button();
             this.pnl_Register = new System.Windows.Forms.Panel();
             this.lbl_groupDesc = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -62,12 +64,20 @@
             this.txt_Name = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cb_GroupName = new System.Windows.Forms.ComboBox();
-            this.btn_ToUsers = new System.Windows.Forms.Button();
-            this.lbl_forgotPass = new System.Windows.Forms.Label();
+            this.pnl_ForgotPass = new System.Windows.Forms.Panel();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txt_resetMail = new System.Windows.Forms.TextBox();
+            this.txt_resetPass = new System.Windows.Forms.TextBox();
+            this.txt_confirmReset = new System.Windows.Forms.TextBox();
+            this.btn_ConfirmPass = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pn_Login.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.pnl_Register.SuspendLayout();
+            this.pnl_ForgotPass.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_toTestMng
@@ -76,7 +86,6 @@
             this.btn_toTestMng.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btn_toTestMng.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_toTestMng.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.btn_toTestMng.Image = global::Survey.Properties.Resources.Custom_Icon_Design_Mono_General_2_Edit_64;
             this.btn_toTestMng.Location = new System.Drawing.Point(3, 3);
             this.btn_toTestMng.Name = "btn_toTestMng";
             this.btn_toTestMng.Size = new System.Drawing.Size(330, 78);
@@ -116,6 +125,16 @@
             this.pn_Login.Name = "pn_Login";
             this.pn_Login.Size = new System.Drawing.Size(272, 257);
             this.pn_Login.TabIndex = 2;
+            // 
+            // lbl_forgotPass
+            // 
+            this.lbl_forgotPass.AutoSize = true;
+            this.lbl_forgotPass.Location = new System.Drawing.Point(132, 178);
+            this.lbl_forgotPass.Name = "lbl_forgotPass";
+            this.lbl_forgotPass.Size = new System.Drawing.Size(91, 13);
+            this.lbl_forgotPass.TabIndex = 7;
+            this.lbl_forgotPass.Text = "Forgot password?";
+            this.lbl_forgotPass.Click += new System.EventHandler(this.lbl_forgotPass_Click);
             // 
             // lbl_Register
             // 
@@ -219,6 +238,23 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(338, 257);
             this.flowLayoutPanel1.TabIndex = 5;
             this.flowLayoutPanel1.Visible = false;
+            // 
+            // btn_ToUsers
+            // 
+            this.btn_ToUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_ToUsers.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btn_ToUsers.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ToUsers.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btn_ToUsers.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_ToUsers.Location = new System.Drawing.Point(3, 172);
+            this.btn_ToUsers.Name = "btn_ToUsers";
+            this.btn_ToUsers.Size = new System.Drawing.Size(330, 79);
+            this.btn_ToUsers.TabIndex = 4;
+            this.btn_ToUsers.Text = "Users";
+            this.btn_ToUsers.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btn_ToUsers.UseVisualStyleBackColor = true;
+            this.btn_ToUsers.Visible = false;
+            this.btn_ToUsers.Click += new System.EventHandler(this.btn_ToUsers_Click);
             // 
             // pnl_Register
             // 
@@ -370,11 +406,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label5.Location = new System.Drawing.Point(50, 17);
+            this.label5.Location = new System.Drawing.Point(59, 17);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(181, 25);
+            this.label5.Size = new System.Drawing.Size(164, 25);
             this.label5.TabIndex = 6;
             this.label5.Text = "Registration Form";
             // 
@@ -423,37 +459,97 @@
             this.cb_GroupName.Size = new System.Drawing.Size(55, 21);
             this.cb_GroupName.TabIndex = 0;
             // 
-            // btn_ToUsers
+            // pnl_ForgotPass
             // 
-            this.btn_ToUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_ToUsers.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btn_ToUsers.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_ToUsers.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.btn_ToUsers.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_ToUsers.Location = new System.Drawing.Point(3, 172);
-            this.btn_ToUsers.Name = "btn_ToUsers";
-            this.btn_ToUsers.Size = new System.Drawing.Size(330, 79);
-            this.btn_ToUsers.TabIndex = 4;
-            this.btn_ToUsers.Text = "Users";
-            this.btn_ToUsers.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btn_ToUsers.UseVisualStyleBackColor = true;
-            this.btn_ToUsers.Visible = false;
+            this.pnl_ForgotPass.Controls.Add(this.btn_ConfirmPass);
+            this.pnl_ForgotPass.Controls.Add(this.txt_confirmReset);
+            this.pnl_ForgotPass.Controls.Add(this.txt_resetPass);
+            this.pnl_ForgotPass.Controls.Add(this.txt_resetMail);
+            this.pnl_ForgotPass.Controls.Add(this.label17);
+            this.pnl_ForgotPass.Controls.Add(this.label16);
+            this.pnl_ForgotPass.Controls.Add(this.label15);
+            this.pnl_ForgotPass.Controls.Add(this.label14);
+            this.pnl_ForgotPass.Location = new System.Drawing.Point(669, 142);
+            this.pnl_ForgotPass.Name = "pnl_ForgotPass";
+            this.pnl_ForgotPass.Size = new System.Drawing.Size(272, 273);
+            this.pnl_ForgotPass.TabIndex = 7;
+            this.pnl_ForgotPass.Visible = false;
             // 
-            // lbl_forgotPass
+            // label15
             // 
-            this.lbl_forgotPass.AutoSize = true;
-            this.lbl_forgotPass.Location = new System.Drawing.Point(132, 178);
-            this.lbl_forgotPass.Name = "lbl_forgotPass";
-            this.lbl_forgotPass.Size = new System.Drawing.Size(91, 13);
-            this.lbl_forgotPass.TabIndex = 7;
-            this.lbl_forgotPass.Text = "Forgot password?";
-            this.lbl_forgotPass.Click += new System.EventHandler(this.lbl_forgotPass_Click);
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(49, 76);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(32, 13);
+            this.label15.TabIndex = 1;
+            this.label15.Text = "Email";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.label14.Location = new System.Drawing.Point(70, 17);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(142, 25);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "New Password";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(49, 117);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(78, 13);
+            this.label16.TabIndex = 2;
+            this.label16.Text = "New Password";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(49, 156);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(91, 13);
+            this.label17.TabIndex = 3;
+            this.label17.Text = "Confirm Password";
+            // 
+            // txt_resetMail
+            // 
+            this.txt_resetMail.Location = new System.Drawing.Point(52, 92);
+            this.txt_resetMail.Name = "txt_resetMail";
+            this.txt_resetMail.Size = new System.Drawing.Size(176, 20);
+            this.txt_resetMail.TabIndex = 4;
+            // 
+            // txt_resetPass
+            // 
+            this.txt_resetPass.Location = new System.Drawing.Point(52, 133);
+            this.txt_resetPass.Name = "txt_resetPass";
+            this.txt_resetPass.Size = new System.Drawing.Size(176, 20);
+            this.txt_resetPass.TabIndex = 5;
+            // 
+            // txt_confirmReset
+            // 
+            this.txt_confirmReset.Location = new System.Drawing.Point(52, 172);
+            this.txt_confirmReset.Name = "txt_confirmReset";
+            this.txt_confirmReset.Size = new System.Drawing.Size(176, 20);
+            this.txt_confirmReset.TabIndex = 6;
+            // 
+            // btn_ConfirmPass
+            // 
+            this.btn_ConfirmPass.Location = new System.Drawing.Point(109, 230);
+            this.btn_ConfirmPass.Name = "btn_ConfirmPass";
+            this.btn_ConfirmPass.Size = new System.Drawing.Size(75, 23);
+            this.btn_ConfirmPass.TabIndex = 7;
+            this.btn_ConfirmPass.Text = "Confirm";
+            this.btn_ConfirmPass.UseVisualStyleBackColor = true;
+            this.btn_ConfirmPass.Click += new System.EventHandler(this.btn_ConfirmPass_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(983, 559);
+            this.Controls.Add(this.pnl_ForgotPass);
             this.Controls.Add(this.pnl_Register);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.btn_logOut);
@@ -461,13 +557,14 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "Main";
             this.Text = "Survey";
-            this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pn_Login.ResumeLayout(false);
             this.pn_Login.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.pnl_Register.ResumeLayout(false);
             this.pnl_Register.PerformLayout();
+            this.pnl_ForgotPass.ResumeLayout(false);
+            this.pnl_ForgotPass.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -510,6 +607,15 @@
         private System.Windows.Forms.Label lbl_groupDesc;
         private System.Windows.Forms.Button btn_ToUsers;
         private System.Windows.Forms.Label lbl_forgotPass;
+        private System.Windows.Forms.Panel pnl_ForgotPass;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button btn_ConfirmPass;
+        private System.Windows.Forms.TextBox txt_confirmReset;
+        private System.Windows.Forms.TextBox txt_resetPass;
+        private System.Windows.Forms.TextBox txt_resetMail;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
     }
 }
 

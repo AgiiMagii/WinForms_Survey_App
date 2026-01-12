@@ -26,3 +26,4 @@ C:\Users\User\Documents\C_sharp\Darbini\Survey\Survey\bin\Debug\System.Memory.xm
 C:\Users\User\Documents\C_sharp\Darbini\Survey\Survey\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\User\Documents\C_sharp\Darbini\Survey\Survey\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\User\Documents\C_sharp\Darbini\Survey\Survey\obj\Debug\Survey.exe.config
+C:\Users\User\Documents\C_sharp\Darbini\Survey\Survey\obj\Debug\Survey.Forms.UserManagement.resources

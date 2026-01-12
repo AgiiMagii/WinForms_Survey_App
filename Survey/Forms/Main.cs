@@ -26,12 +26,18 @@ namespace Survey
         }
         private void btn_toTestMng_Click(object sender, EventArgs e)
         {
+            if (!isAdmin)
+            {
+                MessageBox.Show("Pieeja liegta. Nepietiekamas tiesības.");
+                return;
+            }
             TestManagement testManagement = new TestManagement(this, loggedInUser, isAdmin);
             testManagement.Show();
             testManagement.Location = this.Location;
             testManagement.Size = this.Size;
             this.Hide();
         }
+
         private void btn_logIn_Click(object sender, EventArgs e)
         {
             string username = txt_userName.Text.Trim();
@@ -64,6 +70,7 @@ namespace Survey
 
 
         }
+
         public void LogOut()
         {
             loggedInUser = string.Empty;
@@ -75,6 +82,7 @@ namespace Survey
             flowLayoutPanel1.Visible = false;
             this.Text = "Survey";
         }
+
         private void btn_logOut_Click(object sender, EventArgs e)
         {
             LogOut();
@@ -134,14 +142,54 @@ namespace Survey
 
         }
 
-        private void Main_Load(object sender, EventArgs e)
-        {
-            
-        }
-
         private void lbl_forgotPass_Click(object sender, EventArgs e)
         {
+            pnl_ForgotPass.Visible = true;
+            pn_Login.Visible = false;
 
+        }
+
+        private void btn_ToUsers_Click(object sender, EventArgs e)
+        {
+            if (!isAdmin)
+            {
+                MessageBox.Show("Pieeja liegta. Nepietiekamas tiesības.");
+                return;
+            }
+            UserManagement userManagement = new UserManagement(this, loggedInUser, isAdmin);
+            userManagement.Show();
+            userManagement.Location = this.Location;
+            userManagement.Size = this.Size;
+            this.Hide();
+
+        }
+
+        private void btn_ConfirmPass_Click(object sender, EventArgs e)
+        {
+            string email = txt_resetMail.Text.Trim();
+            string confirmPassword = txt_confirmReset.Text;
+            if (string.IsNullOrWhiteSpace(txt_resetMail.Text))
+            {
+                MessageBox.Show("Lūdzu, ievadiet e-pasta adresi.");
+                return;
+            }
+            string newPassword = txt_resetPass.Text.Trim();
+            if (newPassword != confirmPassword)
+            {
+                MessageBox.Show("Paroles nesakrīt!");
+                return;
+            }
+            bool resetResult = factory.UpdatePassword(email, newPassword);
+            if (resetResult)
+            {
+                MessageBox.Show("Parole veiksmīgi atjaunota!");
+                pnl_ForgotPass.Visible = false;
+                pn_Login.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("Paroles atjaunošana neizdevās. Lūdzu, mēģiniet vēlreiz.");
+            }
         }
     }
 }

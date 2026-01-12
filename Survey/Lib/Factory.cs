@@ -162,5 +162,27 @@ namespace Survey.Lib
             person.LastLoginAt = DateTime.Now;
             repository.UpdateEntity<Person>(person);
         }
+        public bool UpdatePassword(string email, string newPassword)
+        {
+            try
+            {
+                Person person = GetPersonByEmail(email);
+                if (person == null)
+                {
+                    return false;
+                } 
+                person.PasswordHash = bCryptPasswordHasher.HashPassword(newPassword);
+                repository.UpdateEntity<Person>(person);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public Person GetPersonByEmail(string email)
+        {
+            return repository.GetEntities<Person>().FirstOrDefault(p => p.Email == email);
+        }
     }
 }
