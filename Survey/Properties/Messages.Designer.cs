@@ -61,7 +61,7 @@ namespace Survey.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to create a new record!!.
+        ///   Looks up a localized string similar to Registration failed!!.
         /// </summary>
         internal static string Error_Create {
             get {
@@ -70,7 +70,7 @@ namespace Survey.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to delete record!!.
+        ///   Looks up a localized string similar to Failed to delete!!.
         /// </summary>
         internal static string Error_Delete {
             get {
@@ -106,7 +106,7 @@ namespace Survey.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to update record!!.
+        ///   Looks up a localized string similar to Failed to update!!.
         /// </summary>
         internal static string Error_Update {
             get {
@@ -115,7 +115,7 @@ namespace Survey.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New record created successfully!.
+        ///   Looks up a localized string similar to Registration successful!.
         /// </summary>
         internal static string Info_CreateSuccess {
             get {
@@ -124,7 +124,7 @@ namespace Survey.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Record deleted successfully!.
+        ///   Looks up a localized string similar to Delete successful!.
         /// </summary>
         internal static string Info_DeleteSuccess {
             get {
@@ -133,11 +133,20 @@ namespace Survey.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Record updated successfully!.
+        ///   Looks up a localized string similar to Update successful!.
         /// </summary>
         internal static string Info_UpdateSuccess {
             get {
                 return ResourceManager.GetString("Info_UpdateSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access denied!.
+        /// </summary>
+        internal static string Warning_AccessDenied {
+            get {
+                return ResourceManager.GetString("Warning_AccessDenied", resourceCulture);
             }
         }
         
@@ -147,6 +156,15 @@ namespace Survey.Properties {
         internal static string Warning_Delete {
             get {
                 return ResourceManager.GetString("Warning_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please fill in all fields!.
+        /// </summary>
+        internal static string Warning_Fill {
+            get {
+                return ResourceManager.GetString("Warning_Fill", resourceCulture);
             }
         }
         

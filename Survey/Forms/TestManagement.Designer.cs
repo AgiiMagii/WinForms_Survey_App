@@ -394,7 +394,7 @@
             this.gb_newQuestion.Size = new System.Drawing.Size(262, 464);
             this.gb_newQuestion.TabIndex = 26;
             this.gb_newQuestion.TabStop = false;
-            this.gb_newQuestion.Text = "Update and Register";
+            this.gb_newQuestion.Text = "Register";
             this.gb_newQuestion.Visible = false;
             // 
             // btn_ClearQ

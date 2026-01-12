@@ -65,14 +65,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cb_GroupName = new System.Windows.Forms.ComboBox();
             this.pnl_ForgotPass = new System.Windows.Forms.Panel();
+            this.btn_ConfirmPass = new System.Windows.Forms.Button();
+            this.txt_confirmReset = new System.Windows.Forms.TextBox();
+            this.txt_resetPass = new System.Windows.Forms.TextBox();
+            this.txt_resetMail = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txt_resetMail = new System.Windows.Forms.TextBox();
-            this.txt_resetPass = new System.Windows.Forms.TextBox();
-            this.txt_confirmReset = new System.Windows.Forms.TextBox();
-            this.btn_ConfirmPass = new System.Windows.Forms.Button();
+            this.lbl_messagesMain = new System.Windows.Forms.Label();
+            this.lbl_dateTime = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pn_Login.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -104,7 +106,7 @@
             this.pictureBox1.Image = global::Survey.Properties.Resources.man_3653346_1280;
             this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(609, 404);
+            this.pictureBox1.Size = new System.Drawing.Size(604, 404);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -160,6 +162,7 @@
             // 
             this.txt_password.Location = new System.Drawing.Point(54, 155);
             this.txt_password.Name = "txt_password";
+            this.txt_password.PasswordChar = '●';
             this.txt_password.Size = new System.Drawing.Size(169, 20);
             this.txt_password.TabIndex = 4;
             // 
@@ -355,6 +358,7 @@
             // 
             this.txt_confirmPass.Location = new System.Drawing.Point(50, 302);
             this.txt_confirmPass.Name = "txt_confirmPass";
+            this.txt_confirmPass.PasswordChar = '●';
             this.txt_confirmPass.Size = new System.Drawing.Size(174, 20);
             this.txt_confirmPass.TabIndex = 12;
             // 
@@ -418,6 +422,7 @@
             // 
             this.txt_NewPassword.Location = new System.Drawing.Point(49, 263);
             this.txt_NewPassword.Name = "txt_NewPassword";
+            this.txt_NewPassword.PasswordChar = '●';
             this.txt_NewPassword.Size = new System.Drawing.Size(175, 20);
             this.txt_NewPassword.TabIndex = 5;
             // 
@@ -461,6 +466,7 @@
             // 
             // pnl_ForgotPass
             // 
+            this.pnl_ForgotPass.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnl_ForgotPass.Controls.Add(this.btn_ConfirmPass);
             this.pnl_ForgotPass.Controls.Add(this.txt_confirmReset);
             this.pnl_ForgotPass.Controls.Add(this.txt_resetPass);
@@ -474,6 +480,57 @@
             this.pnl_ForgotPass.Size = new System.Drawing.Size(272, 273);
             this.pnl_ForgotPass.TabIndex = 7;
             this.pnl_ForgotPass.Visible = false;
+            // 
+            // btn_ConfirmPass
+            // 
+            this.btn_ConfirmPass.Location = new System.Drawing.Point(109, 230);
+            this.btn_ConfirmPass.Name = "btn_ConfirmPass";
+            this.btn_ConfirmPass.Size = new System.Drawing.Size(75, 23);
+            this.btn_ConfirmPass.TabIndex = 7;
+            this.btn_ConfirmPass.Text = "Confirm";
+            this.btn_ConfirmPass.UseVisualStyleBackColor = true;
+            this.btn_ConfirmPass.Click += new System.EventHandler(this.btn_ConfirmPass_Click);
+            // 
+            // txt_confirmReset
+            // 
+            this.txt_confirmReset.Location = new System.Drawing.Point(52, 172);
+            this.txt_confirmReset.Name = "txt_confirmReset";
+            this.txt_confirmReset.PasswordChar = '●';
+            this.txt_confirmReset.Size = new System.Drawing.Size(176, 20);
+            this.txt_confirmReset.TabIndex = 6;
+            // 
+            // txt_resetPass
+            // 
+            this.txt_resetPass.Location = new System.Drawing.Point(52, 133);
+            this.txt_resetPass.Name = "txt_resetPass";
+            this.txt_resetPass.PasswordChar = '●';
+            this.txt_resetPass.Size = new System.Drawing.Size(176, 20);
+            this.txt_resetPass.TabIndex = 5;
+            // 
+            // txt_resetMail
+            // 
+            this.txt_resetMail.Location = new System.Drawing.Point(52, 92);
+            this.txt_resetMail.Name = "txt_resetMail";
+            this.txt_resetMail.Size = new System.Drawing.Size(176, 20);
+            this.txt_resetMail.TabIndex = 4;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(49, 156);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(91, 13);
+            this.label17.TabIndex = 3;
+            this.label17.Text = "Confirm Password";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(49, 117);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(78, 13);
+            this.label16.TabIndex = 2;
+            this.label16.Text = "New Password";
             // 
             // label15
             // 
@@ -495,60 +552,31 @@
             this.label14.TabIndex = 0;
             this.label14.Text = "New Password";
             // 
-            // label16
+            // lbl_messagesMain
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(49, 117);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(78, 13);
-            this.label16.TabIndex = 2;
-            this.label16.Text = "New Password";
+            this.lbl_messagesMain.AutoSize = true;
+            this.lbl_messagesMain.Location = new System.Drawing.Point(754, 429);
+            this.lbl_messagesMain.Name = "lbl_messagesMain";
+            this.lbl_messagesMain.Size = new System.Drawing.Size(0, 13);
+            this.lbl_messagesMain.TabIndex = 8;
+            this.lbl_messagesMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label17
+            // lbl_dateTime
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(49, 156);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(91, 13);
-            this.label17.TabIndex = 3;
-            this.label17.Text = "Confirm Password";
-            // 
-            // txt_resetMail
-            // 
-            this.txt_resetMail.Location = new System.Drawing.Point(52, 92);
-            this.txt_resetMail.Name = "txt_resetMail";
-            this.txt_resetMail.Size = new System.Drawing.Size(176, 20);
-            this.txt_resetMail.TabIndex = 4;
-            // 
-            // txt_resetPass
-            // 
-            this.txt_resetPass.Location = new System.Drawing.Point(52, 133);
-            this.txt_resetPass.Name = "txt_resetPass";
-            this.txt_resetPass.Size = new System.Drawing.Size(176, 20);
-            this.txt_resetPass.TabIndex = 5;
-            // 
-            // txt_confirmReset
-            // 
-            this.txt_confirmReset.Location = new System.Drawing.Point(52, 172);
-            this.txt_confirmReset.Name = "txt_confirmReset";
-            this.txt_confirmReset.Size = new System.Drawing.Size(176, 20);
-            this.txt_confirmReset.TabIndex = 6;
-            // 
-            // btn_ConfirmPass
-            // 
-            this.btn_ConfirmPass.Location = new System.Drawing.Point(109, 230);
-            this.btn_ConfirmPass.Name = "btn_ConfirmPass";
-            this.btn_ConfirmPass.Size = new System.Drawing.Size(75, 23);
-            this.btn_ConfirmPass.TabIndex = 7;
-            this.btn_ConfirmPass.Text = "Confirm";
-            this.btn_ConfirmPass.UseVisualStyleBackColor = true;
-            this.btn_ConfirmPass.Click += new System.EventHandler(this.btn_ConfirmPass_Click);
+            this.lbl_dateTime.AutoSize = true;
+            this.lbl_dateTime.Location = new System.Drawing.Point(12, 529);
+            this.lbl_dateTime.Name = "lbl_dateTime";
+            this.lbl_dateTime.Size = new System.Drawing.Size(13, 13);
+            this.lbl_dateTime.TabIndex = 9;
+            this.lbl_dateTime.Text = "--";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(983, 559);
+            this.Controls.Add(this.lbl_dateTime);
+            this.Controls.Add(this.lbl_messagesMain);
             this.Controls.Add(this.pnl_ForgotPass);
             this.Controls.Add(this.pnl_Register);
             this.Controls.Add(this.flowLayoutPanel1);
@@ -566,6 +594,7 @@
             this.pnl_ForgotPass.ResumeLayout(false);
             this.pnl_ForgotPass.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -616,6 +645,8 @@
         private System.Windows.Forms.TextBox txt_resetMail;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label lbl_messagesMain;
+        private System.Windows.Forms.Label lbl_dateTime;
     }
 }
 

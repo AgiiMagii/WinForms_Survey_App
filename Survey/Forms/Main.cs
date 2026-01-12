@@ -1,21 +1,26 @@
 ﻿using Survey.Forms;
 using Survey.Lib;
+using Survey.Properties;
+using Survey.Services;
 using Survey.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace Survey
 {
     public partial class Main : Form
     {
+        Security security = new Security();
         Factory factory = new Factory();
         Helper helper = new Helper();
         private string loggedInUser;
@@ -28,7 +33,7 @@ namespace Survey
         {
             if (!isAdmin)
             {
-                MessageBox.Show("Pieeja liegta. Nepietiekamas tiesības.");
+                helper.ShowMessage(Messages.Warning_AccessDenied, lbl_messagesMain, true);
                 return;
             }
             TestManagement testManagement = new TestManagement(this, loggedInUser, isAdmin);
@@ -42,15 +47,15 @@ namespace Survey
         {
             string username = txt_userName.Text.Trim();
             string password = txt_password.Text;
-            Person person = factory.Login(username, password);
+            Person person = security.Login(username, password);
             if (person == null)
             {
-                MessageBox.Show("Nepareizs lietotājvārds vai parole.");
+                helper.ShowMessage(Messages.Warning_Login, lbl_messagesMain, true);
                 return;
             }
             loggedInUser = person.Username;
             isAdmin = person.IsAdmin;
-            factory.UpdateLastLogin(person);
+            security.UpdateLastLogin(person);
             pn_Login.Visible = false;
             flowLayoutPanel1.Visible = true;
             btn_MyTests.Visible = true;
@@ -125,19 +130,19 @@ namespace Survey
             };
             if (personReg.Password != confirmPassword)
             {
-                MessageBox.Show("Paroles nesakrīt!");
+                helper.ShowMessage(Messages.Warning_PasswordMatch, lbl_messagesMain, true);
                 return;
             }
-            bool registrationResult = factory.RegisterPerson(personReg);
+            bool registrationResult = security.RegisterPerson(personReg);
             if (registrationResult)
             {
-                MessageBox.Show("Reģistrācija veiksmīga!");
+                helper.ShowMessage(Messages.Info_CreateSuccess, lbl_messagesMain, true);
                 pnl_Register.Visible = false;
                 pn_Login.Visible = true;
             }
             else
             {
-                MessageBox.Show("Reģistrācija neizdevās! Iespējams, ka lietotājvārds vai e-pasts jau eksistē.");
+                helper.ShowMessage(Messages.Error_Create, lbl_messagesMain, true);
             }
 
         }
@@ -153,7 +158,7 @@ namespace Survey
         {
             if (!isAdmin)
             {
-                MessageBox.Show("Pieeja liegta. Nepietiekamas tiesības.");
+                helper.ShowMessage(Messages.Warning_AccessDenied, lbl_messagesMain, true);
                 return;
             }
             UserManagement userManagement = new UserManagement(this, loggedInUser, isAdmin);
@@ -170,26 +175,27 @@ namespace Survey
             string confirmPassword = txt_confirmReset.Text;
             if (string.IsNullOrWhiteSpace(txt_resetMail.Text))
             {
-                MessageBox.Show("Lūdzu, ievadiet e-pasta adresi.");
+                helper.ShowMessage(Messages.Warning_Fill, lbl_messagesMain, true);
                 return;
             }
             string newPassword = txt_resetPass.Text.Trim();
             if (newPassword != confirmPassword)
             {
-                MessageBox.Show("Paroles nesakrīt!");
+                helper.ShowMessage(Messages.Warning_PasswordMatch, lbl_messagesMain, true);
                 return;
             }
-            bool resetResult = factory.UpdatePassword(email, newPassword);
+            bool resetResult = security.UpdatePassword(email, newPassword);
             if (resetResult)
             {
-                MessageBox.Show("Parole veiksmīgi atjaunota!");
+                helper.ShowMessage(Messages.Info_UpdateSuccess, lbl_messagesMain, true);
                 pnl_ForgotPass.Visible = false;
                 pn_Login.Visible = true;
             }
             else
             {
-                MessageBox.Show("Paroles atjaunošana neizdevās. Lūdzu, mēģiniet vēlreiz.");
+                helper.ShowMessage(Messages.Error_Update, lbl_messagesMain, true);
             }
         }
+        
     }
 }

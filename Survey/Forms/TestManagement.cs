@@ -156,6 +156,8 @@ namespace Survey.Forms
                 helper.ReloadGrid<TestView>(gv_Tests, tests, true);
                 helper.ClearForm(this.Controls);
                 gb_regForm.Visible = false;
+                SetGbNewQuestionName();
+                SetGbRegFormName();
             }
             catch (Exception ex)
             {
@@ -164,6 +166,7 @@ namespace Survey.Forms
         }
         private void gv_Tests_SelectionChanged(object sender, EventArgs e)
         {
+            SetGbRegFormName();
             if (gv_Tests.SelectedRows.Count > 0)
             {
                 long testId = (long)gv_Tests.SelectedRows[0].Cells["Id_Test"].Value;
@@ -187,10 +190,12 @@ namespace Survey.Forms
             gv_Questions.DataSource = null;
             gv_Questions.Rows.Clear();
             gv_Questions.AllowUserToAddRows = false;
+            SetGbRegFormName();
 
         }
         private void gv_Questions_SelectionChanged(object sender, EventArgs e)
         {
+            SetGbNewQuestionName();
             if (gv_Questions.SelectedRows.Count > 0)
             {
                 txt_Question.Text = gv_Questions.SelectedRows[0].Cells["Question1"].Value.ToString();
@@ -255,6 +260,7 @@ namespace Survey.Forms
                 questions = factory.GetQuestionViewByTestId(testId);
                 helper.ReloadGrid<QuestionView>(gv_Questions, questions, true);
                 helper.ClearForm(gb_newQuestion.Controls);
+                SetGbNewQuestionName();
             }
             catch (Exception ex)
             {
@@ -265,6 +271,7 @@ namespace Survey.Forms
         {
             helper.ClearForm(gb_newQuestion.Controls);
             gv_Questions.ClearSelection();
+            SetGbNewQuestionName();
         }
         private void gv_Tests_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -272,7 +279,7 @@ namespace Survey.Forms
             {
                 long testId = (long)gv_Tests.Rows[e.RowIndex].Cells["Id_Test"].Value;
                 Test testToDelete = factory.GetTestById(testId);
-                if (testToDelete != null)
+                if (testToDelete != null && testToDelete.Question.Count == 0)
                 {
                     DialogResult confirmResult = MessageBox.Show(Messages.Warning_Delete, "Confirm Delete", MessageBoxButtons.YesNo);
                     if (confirmResult == DialogResult.Yes)
@@ -289,6 +296,10 @@ namespace Survey.Forms
                             MessageBox.Show(Messages.Error_Delete + ex.Message);
                         }
                     }
+                }
+                else
+                {
+                    MessageBox.Show(Messages.Error_Delete);
                 }
             }
         }
@@ -350,6 +361,28 @@ namespace Survey.Forms
             _main.Size = this.Size;
             _main.Show();
             this.Close();
+        }
+        private void SetGbNewQuestionName()
+        {
+            if (gv_Questions.SelectedRows.Count > 0)
+            {
+                gb_newQuestion.Text = "Edit Question";
+            }
+            else
+            {
+                gb_newQuestion.Text = "New Question";
+            }
+        }  
+        private void SetGbRegFormName()
+        {
+            if (gv_Tests.SelectedRows.Count > 0)
+            {
+                gb_regForm.Text = "Edit Test";
+            }
+            else
+            {
+                gb_regForm.Text = "New Test";
+            }
         }
     }
 }
