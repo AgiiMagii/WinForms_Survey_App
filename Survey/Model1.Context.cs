@@ -31,5 +31,6 @@ namespace Survey
         public virtual DbSet<Test> Test { get; set; }
         public virtual DbSet<GroupName> GroupName { get; set; }
         public virtual DbSet<Person> Person { get; set; }
+        public virtual DbSet<Audit> Audit { get; set; }
     }
 }

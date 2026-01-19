@@ -17,6 +17,8 @@
         <EntityTypeShape EntityType="SurveyModel.Person" Width="1.5" PointX="9.625" PointY="7" />
         <AssociationConnector Association="SurveyModel.FK_Person_GroupName" />
         <AssociationConnector Association="SurveyModel.FK_TestResult_Person" />
+        <EntityTypeShape EntityType="SurveyModel.Audit" Width="1.5" PointX="11.875" PointY="8" />
+        <AssociationConnector Association="SurveyModel.FK_Audit_Person" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

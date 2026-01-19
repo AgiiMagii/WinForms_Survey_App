@@ -18,6 +18,7 @@ namespace Survey
         public Person()
         {
             this.TestResult = new HashSet<TestResult>();
+            this.Audit = new HashSet<Audit>();
         }
     
         public long Id_Person { get; set; }
@@ -31,9 +32,13 @@ namespace Survey
         public bool IsAdmin { get; set; }
         public System.DateTime CreatedAt { get; set; }
         public Nullable<System.DateTime> LastLoginAt { get; set; }
+        public string ProfilePic { get; set; }
+        public bool Enabled { get; set; }
     
         public virtual GroupName GroupName1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TestResult> TestResult { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Audit> Audit { get; set; }
     }
 }

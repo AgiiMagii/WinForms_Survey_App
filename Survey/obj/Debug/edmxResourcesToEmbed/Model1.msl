@@ -61,6 +61,8 @@
     <EntitySetMapping Name="Person">
       <EntityTypeMapping TypeName="SurveyModel.Person">
         <MappingFragment StoreEntitySet="Person">
+          <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+          <ScalarProperty Name="ProfilePic" ColumnName="ProfilePic" />
           <ScalarProperty Name="LastLoginAt" ColumnName="LastLoginAt" />
           <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
           <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
@@ -72,6 +74,16 @@
           <ScalarProperty Name="Surname" ColumnName="Surname" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id_Person" ColumnName="Id_Person" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Audit">
+      <EntityTypeMapping TypeName="SurveyModel.Audit">
+        <MappingFragment StoreEntitySet="Audit">
+          <ScalarProperty Name="LoginResult" ColumnName="LoginResult" />
+          <ScalarProperty Name="Id_Person" ColumnName="Id_Person" />
+          <ScalarProperty Name="LoginTime" ColumnName="LoginTime" />
+          <ScalarProperty Name="Id_Audit" ColumnName="Id_Audit" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

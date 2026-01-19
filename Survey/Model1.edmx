@@ -15,6 +15,15 @@
           <Property Name="AnswerNr" Type="tinyint" Nullable="false" />
           <Property Name="Time" Type="smallint" Nullable="false" />
         </EntityType>
+        <EntityType Name="Audit">
+          <Key>
+            <PropertyRef Name="Id_Audit" />
+          </Key>
+          <Property Name="Id_Audit" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginTime" Type="datetime" Nullable="false" />
+          <Property Name="Id_Person" Type="bigint" Nullable="false" />
+          <Property Name="LoginResult" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="GroupName">
           <Key>
             <PropertyRef Name="GroupName" />
@@ -37,6 +46,8 @@
           <Property Name="IsAdmin" Type="bit" Nullable="false" />
           <Property Name="CreatedAt" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="LastLoginAt" Type="datetime2" Precision="7" />
+          <Property Name="ProfilePic" Type="nvarchar" MaxLength="200" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -97,6 +108,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Audit_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Audit" Type="Self.Audit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id_Person" />
+            </Principal>
+            <Dependent Role="Audit">
+              <PropertyRef Name="Id_Person" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Person_GroupName">
           <End Role="GroupName" Type="Self.GroupName" Multiplicity="1" />
           <End Role="Person" Type="Self.Person" Multiplicity="*" />
@@ -147,6 +172,7 @@
         </Association>
         <EntityContainer Name="SurveyModelStoreContainer">
           <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Audit" EntityType="Self.Audit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GroupName" EntityType="Self.GroupName" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
@@ -159,6 +185,10 @@
           <AssociationSet Name="FK_Answers_TestResults" Association="Self.FK_Answers_TestResults">
             <End Role="TestResult" EntitySet="TestResult" />
             <End Role="Answer" EntitySet="Answer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Audit_Person" Association="Self.FK_Audit_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Audit" EntitySet="Audit" />
           </AssociationSet>
           <AssociationSet Name="FK_Person_GroupName" Association="Self.FK_Person_GroupName">
             <End Role="GroupName" EntitySet="GroupName" />
@@ -225,6 +255,11 @@
           <AssociationSet Name="FK_TestResult_Person" Association="SurveyModel.FK_TestResult_Person">
             <End Role="Person" EntitySet="Person" />
             <End Role="TestResult" EntitySet="TestResult" />
+          </AssociationSet>
+          <EntitySet Name="Audit" EntityType="SurveyModel.Audit" />
+          <AssociationSet Name="FK_Audit_Person" Association="SurveyModel.FK_Audit_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Audit" EntitySet="Audit" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Answer">
@@ -340,6 +375,9 @@
           <Property Name="LastLoginAt" Type="DateTime" Precision="7" />
           <NavigationProperty Name="GroupName1" Relationship="SurveyModel.FK_Person_GroupName" FromRole="Person" ToRole="GroupName" />
           <NavigationProperty Name="TestResult" Relationship="SurveyModel.FK_TestResult_Person" FromRole="Person" ToRole="TestResult" />
+          <Property Name="ProfilePic" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Audit" Relationship="SurveyModel.FK_Audit_Person" FromRole="Person" ToRole="Audit" />
         </EntityType>
         <Association Name="FK_Person_GroupName">
           <End Type="SurveyModel.GroupName" Role="GroupName" Multiplicity="1" />
@@ -361,6 +399,30 @@
               <PropertyRef Name="Id_Person" />
             </Principal>
             <Dependent Role="TestResult">
+              <PropertyRef Name="Id_Person" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Audit">
+          <Key>
+            <PropertyRef Name="Id_Audit" />
+          </Key>
+          <Property Name="Id_Audit" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Id_Person" Type="Int64" Nullable="false" />
+          <Property Name="LoginResult" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="SurveyModel.FK_Audit_Person" FromRole="Audit" ToRole="Person" />
+        </EntityType>
+        <Association Name="FK_Audit_Person">
+          <End Type="SurveyModel.Person" Role="Person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SurveyModel.Audit" Role="Audit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id_Person" />
+            </Principal>
+            <Dependent Role="Audit">
               <PropertyRef Name="Id_Person" />
             </Dependent>
           </ReferentialConstraint>
@@ -431,6 +493,8 @@
           <EntitySetMapping Name="Person">
             <EntityTypeMapping TypeName="SurveyModel.Person">
               <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="ProfilePic" ColumnName="ProfilePic" />
                 <ScalarProperty Name="LastLoginAt" ColumnName="LastLoginAt" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
                 <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
@@ -442,6 +506,16 @@
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id_Person" ColumnName="Id_Person" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Audit">
+            <EntityTypeMapping TypeName="SurveyModel.Audit">
+              <MappingFragment StoreEntitySet="Audit">
+                <ScalarProperty Name="LoginResult" ColumnName="LoginResult" />
+                <ScalarProperty Name="Id_Person" ColumnName="Id_Person" />
+                <ScalarProperty Name="LoginTime" ColumnName="LoginTime" />
+                <ScalarProperty Name="Id_Audit" ColumnName="Id_Audit" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
